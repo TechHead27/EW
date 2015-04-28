@@ -9,15 +9,25 @@ import greenfoot.*;
 public class ForestMap1 extends World
 {
 
+    private Character player;
+    private java.util.Random gen;
     /**
      * Constructor for objects of class ForestMap1.
      * 
      */
     public ForestMap1()
-    {    
+    {
         // Create a new world with 12x8 cells with a cell size of 50x50 pixels.
         super(12, 8, 50);
-        addObject(new Character(), 300, 200);
+        player = new Character();
+        addObject(player, 300, 200);
         Greenfoot.delay(15);
+        gen = new java.util.Random();
+    }
+    
+    public void act()
+    {
+        if (player.hasMoved() && gen.nextFloat() <= 0.13)
+            Greenfoot.setWorld(new ForestBattle());
     }
 }
