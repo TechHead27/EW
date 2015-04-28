@@ -17,6 +17,7 @@ public class ForestBattle extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
-        showText("Monster appeared!", 300, 200);
+        showText("Monster appeared!", 300, 300);
+        addObject(new Slime(), 100, 100);
     }
 }
