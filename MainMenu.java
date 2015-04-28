@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class MainMenu extends World
 {
-    private final int[][] options = {{45, 100}, {45, 275}};
+    private final int[][] options = {{150, 120}, {150, 250}};
     private Arrow selector;
     /**
      * Constructor for objects of class MainMenu.
@@ -19,7 +19,7 @@ public class MainMenu extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         selector = new Arrow(options);
-        addObject(selector, 45, 100);
+        addObject(selector, 150, 120);
     }
     
     public void act()
