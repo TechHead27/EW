@@ -31,6 +31,9 @@ public class ForestMap1 extends World
     public void act()
     {
         if (player.hasMoved() && gen.nextFloat() <= 0.13)
+        {
             Greenfoot.setWorld(new ForestBattle());
+            bgm.stop();
+        }
     }
 }
