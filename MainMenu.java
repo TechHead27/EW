@@ -34,5 +34,10 @@ public class MainMenu extends World
                         break;
             }
         }
+        
+        if (Greenfoot.isKeyDown("y"))
+        {
+            Greenfoot.setWorld(new Credits());
+        }
     }
 }
