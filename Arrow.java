@@ -27,13 +27,13 @@ public class Arrow extends Actor
     public void act() 
     {
         // Add your action code here.
-        if (Greenfoot.isKeyDown("down"))
+        if (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("right"))
         {
             selection = (selection + 1) % options.length;
             setLocation(options[selection][0], options[selection][1]);
             Greenfoot.delay(DELAY);
         }
-        if (Greenfoot.isKeyDown("up"))
+        if (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left"))
         {
             selection = selection==0?options.length - 1:selection - 1;
             setLocation(options[selection][0], options[selection][1]);

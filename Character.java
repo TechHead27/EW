@@ -8,6 +8,12 @@ import greenfoot.*;
  */
 public class Character extends Actor
 {
+    private boolean moved;
+    
+    public Character()
+    {
+        moved = false;
+    }
     /**
      * Act - do whatever the Character wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -17,21 +23,25 @@ public class Character extends Actor
         if (Greenfoot.isKeyDown("up"))
         {
             setLocation(getX(), getY()-TILESIZE);
+            moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
         else if (Greenfoot.isKeyDown("down"))
         {
             setLocation(getX(), getY()+TILESIZE);
+            moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
         else if (Greenfoot.isKeyDown("left"))
         {
             setLocation(getX()-TILESIZE, getY());
+            moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
         else if (Greenfoot.isKeyDown("right"))
         {
             setLocation(getX()+TILESIZE, getY());
+            moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
         
@@ -39,6 +49,13 @@ public class Character extends Actor
         {
             Greenfoot.setWorld(new ForestBattle());
         }
+    }
+    
+    public boolean hasMoved()
+    {
+        boolean ret = moved;
+        moved = false;
+        return ret;
     }
     
     public static final int TILESIZE = 1;
