@@ -11,6 +11,7 @@ public class ForestMap1 extends World
 
     private Character player;
     private java.util.Random gen;
+    private GreenfootSound bgm;
     /**
      * Constructor for objects of class ForestMap1.
      * 
@@ -23,6 +24,8 @@ public class ForestMap1 extends World
         addObject(player, 300, 200);
         Greenfoot.delay(15);
         gen = new java.util.Random();
+        bgm = new GreenfootSound("BGM/Forest1.mp3");
+        bgm.playLoop();
     }
     
     public void act()
