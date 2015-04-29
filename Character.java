@@ -45,11 +45,6 @@ public class Character extends Actor
             moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
-        
-        if (Greenfoot.isKeyDown("enter"))
-        {
-            Greenfoot.setWorld(new ForestBattle());
-        }
     }
     
     public boolean hasMoved()

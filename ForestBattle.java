@@ -20,5 +20,18 @@ public class ForestBattle extends World
         showText("Monster appeared!", 300, 300);
         addObject(new Slime(), 100, 100);
         setBackground("images/burlap.jpg");
+        Greenfoot.delay(35);
+    }
+    
+    public void act()
+    {
+        if (Greenfoot.isKeyDown("enter"))
+        {
+            GreenfootSound victory = new GreenfootSound("BGM/VictoryFanFare.mp3");
+            victory.playLoop();
+            Greenfoot.delay(150);
+            victory.stop();
+            Greenfoot.setWorld(new ForestMap1());
+        }
     }
 }

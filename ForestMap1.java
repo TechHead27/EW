@@ -36,5 +36,10 @@ public class ForestMap1 extends World
             Greenfoot.setWorld(new ForestBattle());
             bgm.stop();
         }
+        if (Greenfoot.isKeyDown("enter"))
+        {
+            Greenfoot.setWorld(new ForestBattle());
+            bgm.stop();
+        }
     }
 }
