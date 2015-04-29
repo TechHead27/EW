@@ -20,7 +20,7 @@ public class MainMenu extends World
         super(600, 400, 1);
         selector = new Arrow(options);
         addObject(selector, 150, 120);
-        setBackground("images/StartMenu.png");
+        setBackground("images/menus/StartMenu.png");
     }
     
     public void act()
