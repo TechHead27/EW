@@ -10,3 +10,15 @@ VERSION or DATE:
 HOW TO START THIS PROJECT:
 AUTHORS:
 USER INSTRUCTIONS:
+
+HOW TO USE GIT:
+git add . --all
+git commit -m "message"
+git fetch
+git rebase origin/master
+     While there are merge conflicts:
+     modify code manually until it is working properly
+     git add . --all
+     git commit -m "message"
+     git rebase --continue
+git push
