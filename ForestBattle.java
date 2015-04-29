@@ -19,5 +19,6 @@ public class ForestBattle extends World
         super(600, 400, 1);
         showText("Monster appeared!", 300, 300);
         addObject(new Slime(), 100, 100);
+        setBackground("images/burlap.jpg");
     }
 }

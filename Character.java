@@ -13,6 +13,7 @@ public class Character extends Actor
     public Character()
     {
         moved = false;
+        setImage("images/man01.png");
     }
     /**
      * Act - do whatever the Character wants to do. This method is called whenever

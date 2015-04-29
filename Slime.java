@@ -11,7 +11,7 @@ public class Slime extends Monster
     public Slime()
     {
         super();
-        GreenfootImage slime = getImage();
+        GreenfootImage slime = new GreenfootImage("images/Slime.png");
         slime.scale(120, 120);
         setImage(slime);
     }

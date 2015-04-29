@@ -13,7 +13,7 @@ public class Arrow extends Actor
     
     public Arrow(int[][] menu)
     {
-        GreenfootImage cross = getImage();
+        GreenfootImage cross = new GreenfootImage("images/Cross.png");
         cross.scale(67, 64);
         setImage(cross);
         options = menu;
