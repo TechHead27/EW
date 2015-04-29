@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.regex.*;
 
 /**
  * Dis be where da credits will be from.
@@ -11,19 +12,23 @@ public class Credits extends World
 {
     // instance variables - replace the example below with your own
     private GreenfootImage credits1;
-    private final GreenfootImage credits2;
+    private int creditPage = -1;
 
     /**
      * Constructor for objects of class Credits
      */
-    public Credits()
+    public Credits(String path)
     {
         super(12, 8, 50);
-        // don't construct anything yo... or maybe do?
-        credits1 = new GreenfootImage("credits.png");
-        credits2 = new GreenfootImage("credits2.png");
+        // don't construct anything yo... or maybe do?;
+        Matcher matcher = Pattern.compile("\\d+").matcher(path);
+        matcher.find();
+        creditPage = Integer.valueOf(matcher.group());
+        System.out.println("before: " + path);
+        setBackground(path);
+        System.out.println("after");
+        //System.out.println(creditPage);
         rollCredits();
-        
     }
     
     /**
@@ -31,15 +36,30 @@ public class Credits extends World
      */
     private void rollCredits()
     {
-        this.setBackground(credits1);
-        try{
-        credits1.wait(50);
-    }
-    catch(Exception e) {
-    }
-        //this.setBackground(credits2);
-        credits1 = new GreenfootImage("credits2.png");
-        this.setBackground(credits1);
+        String nextPage = "credits" + (creditPage + 1) + ".png";
+        System.out.println(nextPage);
+        //this.setBackground(credits1);
+        /*try
+        {
+            Thread.sleep(5000, 0);
+        }
+        catch (Exception e)
+        {
+        }*/
+        //System.out.println(getBackground().toString());
+        System.out.println(creditPage + " before entering");
+        Greenfoot.delay(50);
+        if(creditPage < 2) {
+            System.out.println(creditPage + " after entering");
+            Greenfoot.setWorld(new Credits(nextPage));
+        }
+        else {
+            Greenfoot.stop();
+        }
+        //this.getWorld().setBackground(credits2);
+        //System.out.println(getBackground().toString());
+        //Greenfoot.delay(100);
+        //this.setBackground(credits1);
     }
 }
 
