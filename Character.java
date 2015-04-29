@@ -13,7 +13,9 @@ public class Character extends Actor
     public Character()
     {
         moved = false;
-        setImage("images/man01.png");
+        GreenfootImage player = new GreenfootImage("images/priest/priest_victory1.png");
+        player.scale(70, 70);
+        setImage(player);
     }
     /**
      * Act - do whatever the Character wants to do. This method is called whenever

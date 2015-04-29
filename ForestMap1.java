@@ -26,7 +26,7 @@ public class ForestMap1 extends World
         gen = new java.util.Random();
         bgm = new GreenfootSound("BGM/Forest1.mp3");
         bgm.playLoop();
-        setBackground("images/tombstone.png");
+        setBackground("images/map/tombstone.png");
     }
     
     public void act()
