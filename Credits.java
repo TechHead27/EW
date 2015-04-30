@@ -29,8 +29,13 @@ public class Credits extends World
         System.out.println("after");
         //System.out.println(creditPage);
         rollCredits();
+        //Greenfoot.delay(1000000);
     }
     
+    
+    public void act() {
+        
+    }
     /**
      * Actually display the credits.
      */
@@ -39,23 +44,18 @@ public class Credits extends World
         String nextPage = "images/credits/credits" + (creditPage + 1) + ".png";
         System.out.println(nextPage);
         //this.setBackground(credits1);
-        /*try
-        {
-            Thread.sleep(5000, 0);
-        }
-        catch (Exception e)
-        {
-        }*/
+
         //System.out.println(getBackground().toString());
         System.out.println(creditPage + " before entering");
-        Greenfoot.delay(50);
+        //Greenfoot.delay(50);
         if(creditPage < 2) {
             System.out.println(creditPage + " after entering");
+            Greenfoot.delay(50);
             Greenfoot.setWorld(new Credits(nextPage));
         }
-        else {
-            Greenfoot.stop();
-        }
+        //else {
+        //    Greenfoot.stop();
+        //}
         //this.getWorld().setBackground(credits2);
         //System.out.println(getBackground().toString());
         //Greenfoot.delay(100);
