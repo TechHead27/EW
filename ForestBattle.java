@@ -10,6 +10,8 @@ public class ForestBattle extends World
 {
 
     private Monster enemy;
+    private HealthBar healthBar;
+    private Character player;
     /**
      * Constructor for objects of class ForestBattle.
      * 
@@ -18,10 +20,14 @@ public class ForestBattle extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
-        showText("Monster appeared!", 300, 300);
-        enemy = new Slime();
-        addObject(enemy, 100, 100);
+        showText("Monster appeared!", 300, 200);
         setBackground("images/burlap.jpg");
+        enemy = new Slime();
+        addObject(enemy, 500, 100);
+        player = new Character();
+        addObject(player, 100, 300);
+        healthBar = new HealthBar();
+        addObject(healthBar, 100, 360);
         Greenfoot.delay(35);
     }
     
@@ -30,7 +36,7 @@ public class ForestBattle extends World
         if (Greenfoot.isKeyDown("enter"))
         {
             removeObject(enemy);
-            showText("Monster defeated!", 300, 300);
+            showText("Monster defeated!", 300, 200);
             GreenfootSound victory = new GreenfootSound("BGM/VictoryFanFare.mp3");
             victory.playLoop();
             Greenfoot.delay(150);
