@@ -36,7 +36,7 @@ public class Credits extends World
      */
     private void rollCredits()
     {
-        String nextPage = "credits" + (creditPage + 1) + ".png";
+        String nextPage = "images/credits/credits" + (creditPage + 1) + ".png";
         System.out.println(nextPage);
         //this.setBackground(credits1);
         /*try

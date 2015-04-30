@@ -38,7 +38,7 @@ public class MainMenu extends World
         
         if (Greenfoot.isKeyDown("y"))
         {
-            Greenfoot.setWorld(new Credits());
+            Greenfoot.setWorld(new Credits("credits1.png"));
         }
     }
 }
