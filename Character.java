@@ -30,24 +30,28 @@ public class Character extends Actor
         if (Greenfoot.isKeyDown("up"))
         {
             y -= TILESIZE;
+            if (y < 0) y = 0;
             moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
         else if (Greenfoot.isKeyDown("down"))
         {
             y += TILESIZE;
+            if (y >= getWorld().getHeight()) y = getWorld().getHeight() - 1;
             moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
         else if (Greenfoot.isKeyDown("left"))
         {
             x -= TILESIZE;
+            if (x < 0) x = 0;
             moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
         else if (Greenfoot.isKeyDown("right"))
         {
             x += TILESIZE;
+            if (x >= getWorld().getWidth()) x = getWorld().getWidth() - 1;
             moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
@@ -63,5 +67,5 @@ public class Character extends Actor
     }
     
     public static final int TILESIZE = 1;
-    public static final int MOVEDELAY = 12;
+    public static final int MOVEDELAY = 10;
 }
