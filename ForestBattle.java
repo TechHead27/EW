@@ -24,7 +24,7 @@ public class ForestBattle extends World
         setBackground("images/burlap.jpg");
         enemy = new Slime();
         addObject(enemy, 500, 100);
-        player = new Character();
+        player = c;
         addObject(player, 100, 300);
         healthBar = new HealthBar();
         addObject(healthBar, 100, 360);
