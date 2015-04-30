@@ -16,7 +16,7 @@ public class ForestBattle extends World
      * Constructor for objects of class ForestBattle.
      * 
      */
-    public ForestBattle()
+    public ForestBattle(Character c)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
@@ -29,6 +29,7 @@ public class ForestBattle extends World
         healthBar = new HealthBar();
         addObject(healthBar, 100, 360);
         Greenfoot.delay(35);
+        player = c;
     }
     
     public void act()
@@ -41,7 +42,7 @@ public class ForestBattle extends World
             victory.playLoop();
             Greenfoot.delay(150);
             victory.stop();
-            Greenfoot.setWorld(new ForestMap1());
+            Greenfoot.setWorld(new ForestMap1(player));
         }
     }
 }

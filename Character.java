@@ -9,13 +9,17 @@ import greenfoot.*;
 public class Character extends Actor
 {
     private boolean moved;
+    private int x;
+    private int y;
     
-    public Character()
+    public Character(int startx, int starty)
     {
         moved = false;
         GreenfootImage player = new GreenfootImage("images/priest/priest_victory1.png");
         player.scale(70, 70);
         setImage(player);
+        x = startx;
+        y = starty;
     }
     /**
      * Act - do whatever the Character wants to do. This method is called whenever
@@ -25,28 +29,30 @@ public class Character extends Actor
     {
         if (Greenfoot.isKeyDown("up"))
         {
-            setLocation(getX(), getY()-TILESIZE);
+            y -= TILESIZE;
             moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
         else if (Greenfoot.isKeyDown("down"))
         {
-            setLocation(getX(), getY()+TILESIZE);
+            y += TILESIZE;
             moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
         else if (Greenfoot.isKeyDown("left"))
         {
-            setLocation(getX()-TILESIZE, getY());
+            x -= TILESIZE;
             moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
         else if (Greenfoot.isKeyDown("right"))
         {
-            setLocation(getX()+TILESIZE, getY());
+            x += TILESIZE;
             moved = true;
             Greenfoot.delay(MOVEDELAY);
         }
+        
+        setLocation(x, y);
     }
     
     public boolean hasMoved()
@@ -57,5 +63,5 @@ public class Character extends Actor
     }
     
     public static final int TILESIZE = 1;
-    public static final int MOVEDELAY = 16;
+    public static final int MOVEDELAY = 12;
 }
