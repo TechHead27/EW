@@ -11,7 +11,7 @@ import java.util.regex.*;
 public class Credits extends World
 {
     // instance variables - replace the example below with your own
-    private GreenfootImage credits1;
+    private GreenfootImage credits;
     private int creditPage = -1;
 
     /**
@@ -19,48 +19,27 @@ public class Credits extends World
      */
     public Credits(String path)
     {
-        super(12, 8, 50);
+        super(4, 4, 100);
         // don't construct anything yo... or maybe do?;
         Matcher matcher = Pattern.compile("\\d+").matcher(path);
         matcher.find();
         creditPage = Integer.valueOf(matcher.group());
-        System.out.println("before: " + path);
-        setBackground(path);
-        System.out.println("after");
-        //System.out.println(creditPage);
-        rollCredits();
-        //Greenfoot.delay(1000000);
-    }
-    
-    
-    public void act() {
         
+        setBackground(path);
     }
+    
     /**
-     * Actually display the credits.
+     * Change the pictures yo
      */
-    private void rollCredits()
-    {
+    public void act() {
         String nextPage = "images/credits/credits" + (creditPage + 1) + ".png";
-        System.out.println(nextPage);
-        //this.setBackground(credits1);
 
-        //System.out.println(getBackground().toString());
-        System.out.println(creditPage + " before entering");
-        //Greenfoot.delay(50);
-        if(creditPage < 2) {
-            System.out.println(creditPage + " after entering");
-            Greenfoot.delay(50);
-            Greenfoot.setWorld(new Credits(nextPage));
+        if(creditPage++ < 2) {
+            Greenfoot.delay(200);
+            setBackground(nextPage);
         }
-        //else {
-        //    Greenfoot.stop();
-        //}
-        //this.getWorld().setBackground(credits2);
-        //System.out.println(getBackground().toString());
-        //Greenfoot.delay(100);
-        //this.setBackground(credits1);
+        else {
+            Greenfoot.stop();
+        }
     }
 }
-
-//super(600, 400, 1);
