@@ -20,7 +20,20 @@ public class ForestMap1 extends World
     {
         // Create a new world with 12x8 cells with a cell size of 50x50 pixels.
         super(12, 8, 50);
-        player = new Character();
+        player = new Character(11, 7);
+        addObject(player, 11, 7);
+        Greenfoot.delay(15);
+        gen = new java.util.Random();
+        bgm = new GreenfootSound("BGM/Forest1.mp3");
+        bgm.playLoop();
+        setBackground("images/map/tombstone.png");
+    }
+    
+    public ForestMap1(Character c)
+    {
+        // Create a new world with 12x8 cells with a cell size of 50x50 pixels.
+        super(12, 8, 50);
+        player = c;
         addObject(player, 300, 200);
         Greenfoot.delay(15);
         gen = new java.util.Random();
@@ -33,12 +46,12 @@ public class ForestMap1 extends World
     {
         if (player.hasMoved() && gen.nextFloat() <= 0.13)
         {
-            Greenfoot.setWorld(new ForestBattle());
+            Greenfoot.setWorld(new ForestBattle(player));
             bgm.stop();
         }
         if (Greenfoot.isKeyDown("enter"))
         {
-            Greenfoot.setWorld(new ForestBattle());
+            Greenfoot.setWorld(new ForestBattle(player));
             bgm.stop();
         }
     }
