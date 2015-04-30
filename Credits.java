@@ -10,8 +10,7 @@ import java.util.regex.*;
  */
 public class Credits extends World
 {
-    // instance variables - replace the example below with your own
-    private GreenfootImage credits;
+    // keep track of what the current image number is to change it
     private int creditPage = -1;
 
     /**
@@ -20,7 +19,7 @@ public class Credits extends World
     public Credits(String path)
     {
         super(4, 4, 100);
-        // don't construct anything yo... or maybe do?;
+        // construct the initial image yo
         Matcher matcher = Pattern.compile("\\d+").matcher(path);
         matcher.find();
         creditPage = Integer.valueOf(matcher.group());
