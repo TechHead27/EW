@@ -10,6 +10,7 @@ public class MainMenu extends World
 {
     private final int[][] options = {{150, 120}, {150, 250}};
     private Arrow selector;
+    private GreenfootSound bgm;
     /**
      * Constructor for objects of class MainMenu.
      * 
@@ -20,18 +21,23 @@ public class MainMenu extends World
         super(600, 400, 1);
         selector = new Arrow(options);
         addObject(selector, 150, 120);
+        bgm = new GreenfootSound("BGM/TitleScreen.mp3");
+        //bgm.playLoop();
         setBackground("images/menus/StartMenu.png");
     }
     
     public void act()
     {
+        bgm.playLoop();
         if (Greenfoot.isKeyDown("enter"))
         {
             switch (selector.getSelection())
             {
                 case 0: Greenfoot.setWorld(new ForestMap1());
+                        bgm.stop();
                         break;
                 case 1: Greenfoot.stop();
+                        bgm.stop();
                         break;
             }
         }
@@ -39,6 +45,7 @@ public class MainMenu extends World
         if (Greenfoot.isKeyDown("y"))
         {
             Greenfoot.setWorld(new Credits("images/credits/credits1.png"));
+            bgm.stop();
         }
     }
 }

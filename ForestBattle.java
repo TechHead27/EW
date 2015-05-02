@@ -12,6 +12,7 @@ public class ForestBattle extends World
     private Monster enemy;
     private HealthBar healthBar;
     private Character player;
+    private GreenfootSound bgm;
     /**
      * Constructor for objects of class ForestBattle.
      * 
@@ -28,6 +29,8 @@ public class ForestBattle extends World
         addObject(player, 100, 300);
         healthBar = new HealthBar();
         addObject(healthBar, 100, 360);
+        bgm = new GreenfootSound("BGM/BattleTheme1.mp3");
+        bgm.playLoop();
         Greenfoot.delay(35);
         player = c;
     }
@@ -36,6 +39,7 @@ public class ForestBattle extends World
     {
         if (Greenfoot.isKeyDown("enter"))
         {
+            bgm.stop();
             removeObject(enemy);
             showText("Monster defeated!", 300, 200);
             GreenfootSound victory = new GreenfootSound("BGM/VictoryFanFare.mp3");
