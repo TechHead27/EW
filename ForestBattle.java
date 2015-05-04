@@ -6,9 +6,8 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ForestBattle extends World
+public class ForestBattle extends BattleField
 {
-
     private Monster enemy;
     private HealthBar healthBar;
     private Character player;
@@ -20,7 +19,7 @@ public class ForestBattle extends World
     public ForestBattle(Character c)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1);
+        super();
         showText("Monster appeared!", 300, 200);
         setBackground("images/burlap.jpg");
         enemy = new Slime();
@@ -70,7 +69,7 @@ public class ForestBattle extends World
                 else
                 {
                     enemy.setHealth(enemy.getHealth() - damage);
-                    damage = enemy.attack(player);
+                    damage = enemy.chooseAttack(player);
                     // if the damage was enough to kill the player
                     if (player.getHealth() - damage <= 0)
                     {
@@ -84,13 +83,14 @@ public class ForestBattle extends World
                     {
                         player.setHealth(player.getHealth() - damage);
                         healthBar.setHealthImage(player);
+                        Greenfoot.delay(50);
                     }
                 }
             }
             // monster is faster O.O
             else
             {
-                damage = enemy.attack(player);
+                damage = enemy.chooseAttack(player);
                 // if the damage was enough to kill the player
                 if (player.getHealth() - damage <= 0)
                 {
@@ -120,10 +120,10 @@ public class ForestBattle extends World
                     else
                     {
                         enemy.setHealth(enemy.getHealth() - damage);
+                        Greenfoot.delay(50);
                     }
                 }
             }
-            Greenfoot.delay(50);
         }
     }
 }

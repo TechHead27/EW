@@ -101,6 +101,20 @@ public class Character extends Actor
         return damage;
     }
     
+    /**
+     * Attack with a magical attack
+     * @return the amount of damage dealt
+     */
+    public int cast(Monster m)
+    {
+        int damage = 0;
+        int monMDef = m.getWill();
+        
+        damage = (piety * 2) / (monMDef * 3);
+        if (damage == 0) damage = 1;
+        return damage;
+    }
+    
     public boolean hasMoved()
     {
         boolean ret = moved;

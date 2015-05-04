@@ -36,7 +36,7 @@ public class ForestMap1 extends World
         player = c;
         player.setMovable(true);
         addObject(player, 300, 200);
-        Greenfoot.delay(15);
+        //Greenfoot.delay(15); Seems unnecessary? Not exactly sure what it was for
         gen = new java.util.Random();
         bgm = new GreenfootSound("BGM/Forest1.mp3");
         bgm.playLoop();
@@ -47,8 +47,10 @@ public class ForestMap1 extends World
     {
         if (player.hasMoved() && gen.nextFloat() <= 0.13)
         {
+            Greenfoot.delay(7);
             Greenfoot.setWorld(new ForestBattle(player));
             bgm.stop();
+            //Greenfoot.delay(5);
         }
         if (Greenfoot.isKeyDown("enter"))
         {

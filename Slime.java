@@ -30,7 +30,7 @@ public class Slime extends Monster
     public void act() 
     {
         // Add your action code here.
-    }    
+    }
     
     /**
      * Attack with a physical attack
@@ -44,5 +44,15 @@ public class Slime extends Monster
         damage = (strength * 2) / (playDef * 3);
         if (damage == 0) damage = 1;
         return damage;
+    }
+    
+    /**
+     * Attack with a magical attack
+     * @return the amount of damage dealt
+     */
+    public int cast(Character player)
+    {
+        // Do nothing if Monster has no magic attacks
+        return 0;
     }
 }

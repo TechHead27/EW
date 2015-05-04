@@ -28,7 +28,23 @@ public abstract class Monster extends Actor
         // Add your action code here.
     }
     
+    /**
+     * Choose which attack a monster will execute
+     */
+    public int chooseAttack(Character player)
+    {
+        int damage = 0;
+        damage = attack(player);
+        if (cast(player) > damage)
+        {
+            damage = cast(player);
+        }
+        
+        return damage;
+    }
+    
     public abstract int attack(Character player);
+    public abstract int cast(Character player);
     
     /** GETTERS **/
     public int getHealth()
