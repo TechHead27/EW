@@ -34,6 +34,7 @@ public class ForestMap1 extends World
         // Create a new world with 12x8 cells with a cell size of 50x50 pixels.
         super(12, 8, 50);
         player = c;
+        player.setMovable(true);
         addObject(player, 300, 200);
         Greenfoot.delay(15);
         gen = new java.util.Random();
