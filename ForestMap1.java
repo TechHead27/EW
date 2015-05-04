@@ -48,13 +48,13 @@ public class ForestMap1 extends World
         if (player.hasMoved() && gen.nextFloat() <= 0.13)
         {
             Greenfoot.delay(7);
-            Greenfoot.setWorld(new ForestBattle(player));
+            Greenfoot.setWorld(new ForestBattle(player, Greenfoot.getRandomNumber(4)));
             bgm.stop();
             //Greenfoot.delay(5);
         }
         if (Greenfoot.isKeyDown("enter"))
         {
-            Greenfoot.setWorld(new ForestBattle(player));
+            Greenfoot.setWorld(new ForestBattle(player, 1));
             bgm.stop();
         }
         else if (Greenfoot.isKeyDown("escape"))

@@ -8,27 +8,31 @@ import greenfoot.*;
  */
 public class ForestBattle extends BattleField
 {
-    private Monster enemy;
+    private Monster enemy1, enemy2, enemy3;
     private HealthBar healthBar;
     private Character player;
     private GreenfootSound bgm;
+    private int numEnemies;
+    
     /**
      * Constructor for objects of class ForestBattle.
      * 
      */
-    public ForestBattle(Character c)
+    public ForestBattle(Character c, int enemies)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super();
-        showText("Monster appeared!", 300, 200);
+        showText("Monster appeared!", 400, 360);
         setBackground("images/burlap.jpg");
-        enemy = new Slime();
-        addObject(enemy, 500, 100);
+
+        createEnemies(enemies);
+
         player = c;
         player.setMovable(false);
         addObject(player, 100, 300);
         healthBar = new HealthBar(player);
         addObject(healthBar, 100, 360);
+        
         bgm = new GreenfootSound("BGM/BattleTheme1.mp3");
         bgm.playLoop();
         Greenfoot.delay(35);
@@ -40,43 +44,40 @@ public class ForestBattle extends BattleField
         if (Greenfoot.isKeyDown("enter"))
         {
             bgm.stop();
-            removeObject(enemy);
-            showText("Monster defeated!", 300, 200);
+            removeObject(enemy1);
+            showText("Monster defeated!", 400, 360);
             GreenfootSound victory = new GreenfootSound("BGM/VictoryFanFare.mp3");
             victory.playLoop();
             Greenfoot.delay(150);
             victory.stop();
             Greenfoot.setWorld(new ForestMap1(player));
         }
-        else if(Greenfoot.isKeyDown("1"))
+        else if(Greenfoot.isKeyDown("1") && enemy1 != null && enemy1.getWorld() != null)
         {
             int damage;
-            if (player.getSpeed() > enemy.getSpeed())
+            if (player.getSpeed() > enemy1.getSpeed())
             {
-                damage = player.attack(enemy);
+                damage = player.attack(enemy1);
                 // if the damage was enough to kill the monster
-                if (enemy.getHealth() - damage <= 0)
+                if (enemy1.getHealth() - damage <= 0)
                 {
-                    bgm.stop();
-                    removeObject(enemy);
-                    showText("Monster defeated!", 300, 200);
-                    GreenfootSound victory = new GreenfootSound("BGM/VictoryFanFare.mp3");
-                    victory.playLoop();
-                    Greenfoot.delay(150);
-                    victory.stop();
-                    Greenfoot.setWorld(new ForestMap1(player));
+                    removeObject(enemy1);
+                    showText("Monster defeated!", 400, 360);
+                    Greenfoot.delay(50);
+                    numEnemies--;
                 }
                 else
                 {
-                    enemy.setHealth(enemy.getHealth() - damage);
-                    damage = enemy.chooseAttack(player);
+                    enemy1.setHealth(enemy1.getHealth() - damage);
+                    showText("Attacked " + enemy1.getClass().getName(), 400, 360);
+                    damage = enemy1.chooseAttack(player);
                     // if the damage was enough to kill the player
                     if (player.getHealth() - damage <= 0)
                     {
                         bgm.stop();
                         removeObject(player);
                         removeObject(healthBar);
-                        showText("You died!", 300, 200);
+                        showText("You died!", 400, 360);
                         Greenfoot.stop();
                     }
                     else
@@ -90,40 +91,253 @@ public class ForestBattle extends BattleField
             // monster is faster O.O
             else
             {
-                damage = enemy.chooseAttack(player);
+                damage = enemy1.chooseAttack(player);
                 // if the damage was enough to kill the player
                 if (player.getHealth() - damage <= 0)
                 {
                     bgm.stop();
                     removeObject(player);
                     removeObject(healthBar);
-                    showText("You died!", 300, 200);
+                    showText("You died!", 400, 360);
                     Greenfoot.stop();
                 }
                 else
                 {
                     player.setHealth(player.getHealth() - damage);
                     healthBar.setHealthImage(player);
-                    damage = player.attack(enemy);
+                    damage = player.attack(enemy1);
                     // if the damage was enough to kill the monster
                     if (player.getHealth() - damage <= 0)
                     {
-                        bgm.stop();
-                        removeObject(enemy);
-                        showText("Monster defeated!", 300, 200);
-                        GreenfootSound victory = new GreenfootSound("BGM/VictoryFanFare.mp3");
-                        victory.playLoop();
-                        Greenfoot.delay(150);
-                        victory.stop();
-                        Greenfoot.setWorld(new ForestMap1(player));
+                        removeObject(enemy1);
+                        showText("Monster defeated!", 400, 360);
+                        Greenfoot.delay(50);
+                        numEnemies--;
                     }
                     else
                     {
-                        enemy.setHealth(enemy.getHealth() - damage);
+                        enemy1.setHealth(enemy1.getHealth() - damage);
+                        showText("Attacked " + enemy1.getClass().getName(), 400, 360);
                         Greenfoot.delay(50);
                     }
                 }
             }
         }
+        else if(Greenfoot.isKeyDown("2") && enemy2 != null && enemy2.getWorld() != null)
+        {
+            int damage;
+            if (player.getSpeed() > enemy2.getSpeed())
+            {
+                damage = player.attack(enemy2);
+                // if the damage was enough to kill the monster
+                if (enemy2.getHealth() - damage <= 0)
+                {
+                    removeObject(enemy2);
+                    showText("Monster defeated!", 400, 360);
+                    Greenfoot.delay(50);
+                    numEnemies--;
+                }
+                else
+                {
+                    enemy2.setHealth(enemy2.getHealth() - damage);
+                    showText("Attacked " + enemy2.getClass().getName(), 400, 360);
+                    damage = enemy2.chooseAttack(player);
+                    // if the damage was enough to kill the player
+                    if (player.getHealth() - damage <= 0)
+                    {
+                        bgm.stop();
+                        removeObject(player);
+                        removeObject(healthBar);
+                        showText("You died!", 400, 360);
+                        Greenfoot.stop();
+                    }
+                    else
+                    {
+                        player.setHealth(player.getHealth() - damage);
+                        healthBar.setHealthImage(player);
+                        Greenfoot.delay(50);
+                    }
+                }
+            }
+            // monster is faster O.O
+            else
+            {
+                damage = enemy2.chooseAttack(player);
+                // if the damage was enough to kill the player
+                if (player.getHealth() - damage <= 0)
+                {
+                    bgm.stop();
+                    removeObject(player);
+                    removeObject(healthBar);
+                    showText("You died!", 400, 360);
+                    Greenfoot.stop();
+                }
+                else
+                {
+                    player.setHealth(player.getHealth() - damage);
+                    healthBar.setHealthImage(player);
+                    damage = player.attack(enemy2);
+                    // if the damage was enough to kill the monster
+                    if (player.getHealth() - damage <= 0)
+                    {
+                        removeObject(enemy2);
+                        showText("Monster defeated!", 400, 360);
+                        Greenfoot.delay(50);
+                        numEnemies--;
+                    }
+                    else
+                    {
+                        enemy2.setHealth(enemy2.getHealth() - damage);
+                        showText("Attacked " + enemy2.getClass().getName(), 400, 360);
+                        Greenfoot.delay(50);
+                    }
+                }
+            }
+        }
+        else if(Greenfoot.isKeyDown("3") && enemy3 != null && enemy3.getWorld() != null)
+        {
+            int damage;
+            if (player.getSpeed() > enemy3.getSpeed())
+            {
+                damage = player.attack(enemy3);
+                // if the damage was enough to kill the monster
+                if (enemy3.getHealth() - damage <= 0)
+                {
+                    removeObject(enemy3);
+                    showText("Monster defeated!", 400, 360);
+                    Greenfoot.delay(50);
+                    numEnemies--;
+                }
+                else
+                {
+                    enemy3.setHealth(enemy3.getHealth() - damage);
+                    showText("Attacked " + enemy3.getClass().getName(), 400, 360);
+                    damage = enemy3.chooseAttack(player);
+                    // if the damage was enough to kill the player
+                    if (player.getHealth() - damage <= 0)
+                    {
+                        bgm.stop();
+                        removeObject(player);
+                        removeObject(healthBar);
+                        showText("You died!", 400, 360);
+                        Greenfoot.stop();
+                    }
+                    else
+                    {
+                        player.setHealth(player.getHealth() - damage);
+                        healthBar.setHealthImage(player);
+                        Greenfoot.delay(50);
+                    }
+                }
+            }
+            // monster is faster O.O
+            else
+            {
+                damage = enemy3.chooseAttack(player);
+                // if the damage was enough to kill the player
+                if (player.getHealth() - damage <= 0)
+                {
+                    bgm.stop();
+                    removeObject(player);
+                    removeObject(healthBar);
+                    showText("You died!", 400, 360);
+                    Greenfoot.stop();
+                }
+                else
+                {
+                    player.setHealth(player.getHealth() - damage);
+                    healthBar.setHealthImage(player);
+                    damage = player.attack(enemy3);
+                    // if the damage was enough to kill the monster
+                    if (player.getHealth() - damage <= 0)
+                    {
+                        removeObject(enemy3);
+                        showText("Monster defeated!", 400, 360);
+                        Greenfoot.delay(50);
+                        numEnemies--;
+                    }
+                    else
+                    {
+                        enemy2.setHealth(enemy3.getHealth() - damage);
+                        showText("Attacked " + enemy3.getClass().getName(), 400, 360);
+                        Greenfoot.delay(50);
+                    }
+                }
+            }
+        }
+        
+        if (numEnemies == 0)
+        {
+            bgm.stop();
+            showText("Monster defeated!", 400, 360);
+            GreenfootSound victory = new GreenfootSound("BGM/VictoryFanFare.mp3");
+            victory.playLoop();
+            Greenfoot.delay(150);
+            victory.stop();
+            Greenfoot.setWorld(new ForestMap1(player));
+        }
+        else 
+        {
+            showText("", 400, 360);
+        }
+    }
+    
+    /**
+     * Create the enemies on screen.
+     */
+    private void createEnemies(int enemies)
+    {
+        int monster;
+        
+        if (enemies >= 0)
+        {
+            monster = Greenfoot.getRandomNumber(5); // We need each so there is a different monster in each slot
+            enemy1 = randomMonster(monster);
+            addObject(enemy1, 450, 50);
+            numEnemies++;
+        }
+        if (enemies >= 2)
+        {
+            monster = Greenfoot.getRandomNumber(5); // We need each so there is a different monster in each slot
+            enemy2 = randomMonster(monster);
+            addObject(enemy2, 500, 100);
+            numEnemies++;
+        }
+        if (enemies == 3)
+        {
+            monster = Greenfoot.getRandomNumber(5); // We need each so there is a different monster in each slot
+            enemy3 = randomMonster(monster);
+            addObject(enemy3, 370, 170);
+            numEnemies++;
+        }
+    }
+    
+    /**
+     * Pick the right monster from the array.
+     * 0 - Slime, 1 - Blue Wolf, 2 - Red Wolf, 3 - Yellow Wolf, 4 - Skull Spider
+     */
+    private Monster randomMonster(int index)
+    {
+        if (index == 0)
+        {
+            return new Slime();
+        }
+        if (index == 1)
+        {
+            return new BlueWolf();
+        }
+        if (index == 2)
+        {
+            return new RedWolf();
+        }
+        if (index == 3)
+        {
+            return new YellowWolf();
+        }
+        if (index == 4)
+        {
+            return new SkullSpider();
+        }
+        return null;
     }
 }

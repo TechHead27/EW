@@ -1,26 +1,26 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Slime here.
+ * Write a description of class SkullSpider here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Slime extends Monster
+public class SkullSpider extends Monster
 {
-    public Slime()
+    public SkullSpider()
     {
         super();
-        GreenfootImage slime = new GreenfootImage("images/monsters/Slime.png");
-        slime.scale(120, 120);
-        setImage(slime);
+        GreenfootImage spider = new GreenfootImage("images/monsters/skull_spider.png");
+        spider.scale(75, 75);
+        setImage(spider);
         
-        health = 20;
-        strength = 3;
-        defense = 2;
-        piety = 0;
-        will = 0;
-        speed = 4;
+        health = 15;
+        strength = 2;
+        defense = 8;
+        piety = 1;
+        will = 3;
+        speed = 7;
     }
     
     /**
@@ -43,16 +43,20 @@ public class Slime extends Monster
      */
     public int cast(Character player)
     {
-        // Do nothing if Monster has no magic attacks
-        return 0;
+        int damage = 0;
+        int playMDef = player.getWill();
+        
+        damage = (piety * 2) / playMDef;
+        if (damage == 0) damage = 1;
+        return damage;
     }
     
     /**
-     * Act - do whatever the Slime wants to do. This method is called whenever
+     * Act - do whatever the SkullSpider wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
         // Add your action code here.
-    }
+    }    
 }

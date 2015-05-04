@@ -1,26 +1,26 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Slime here.
+ * Write a description of class RedWolf here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Slime extends Monster
+public class RedWolf extends Wolf
 {
-    public Slime()
+    public RedWolf()
     {
         super();
-        GreenfootImage slime = new GreenfootImage("images/monsters/Slime.png");
-        slime.scale(120, 120);
-        setImage(slime);
+        GreenfootImage wolf = new GreenfootImage("images/monsters/wolf_red.png");
+        wolf.scale(120, 120);
+        setImage(wolf);
         
-        health = 20;
-        strength = 3;
-        defense = 2;
-        piety = 0;
-        will = 0;
-        speed = 4;
+        health = 35;
+        strength = 5;
+        defense = 4;
+        piety = 2;
+        will = 10;
+        speed = 12;
     }
     
     /**
@@ -32,7 +32,7 @@ public class Slime extends Monster
         int damage = 0;
         int playDef = player.getDefense();
         
-        damage = (strength * 2) / (playDef * 3);
+        damage = (strength * 3) / (playDef * 2);
         if (damage == 0) damage = 1;
         return damage;
     }
@@ -43,16 +43,20 @@ public class Slime extends Monster
      */
     public int cast(Character player)
     {
-        // Do nothing if Monster has no magic attacks
-        return 0;
+        int damage = 0;
+        int playMDef = player.getWill();
+        
+        damage = (piety * 2) / (playMDef * 3);
+        if (damage == 0) damage = 1;
+        return damage;
     }
     
     /**
-     * Act - do whatever the Slime wants to do. This method is called whenever
+     * Act - do whatever the RedWolf wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
         // Add your action code here.
-    }
+    }    
 }
