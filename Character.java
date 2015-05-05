@@ -51,6 +51,21 @@ public class Character extends Actor
         nextLvl = 100;
         lvl = 1;
     }
+    
+    public void battleReady()
+    {
+        GreenfootImage player = new GreenfootImage("images/priest/priest_victory1.png");
+        player.scale(160, 160);
+        setImage(player);
+    }
+    
+    public void exploreReady()
+    {
+        GreenfootImage player = new GreenfootImage("images/priest/priest_victory1.png");
+        player.scale(70, 70);
+        setImage(player);
+    }
+    
     /**
      * Act - do whatever the Character wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

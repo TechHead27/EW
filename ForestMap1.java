@@ -35,6 +35,7 @@ public class ForestMap1 extends World
         super(12, 8, 50);
         player = c;
         player.setMovable(true);
+        player.exploreReady();
         addObject(player, 300, 200);
         //Greenfoot.delay(15); Seems unnecessary? Not exactly sure what it was for
         gen = new java.util.Random();
@@ -54,7 +55,7 @@ public class ForestMap1 extends World
         }
         if (Greenfoot.isKeyDown("enter"))
         {
-            Greenfoot.setWorld(new ForestBattle(player, 1));
+            Greenfoot.setWorld(new ForestBattle(player, 3));
             bgm.stop();
         }
         else if (Greenfoot.isKeyDown("escape"))

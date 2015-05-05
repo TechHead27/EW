@@ -30,7 +30,9 @@ public class ForestBattle extends BattleField
 
         player = c;
         player.setMovable(false);
-        addObject(player, 100, 300);
+        player.battleReady();
+        addObject(player, 100, 200);
+        
         healthBar = new HealthBar(player);
         addObject(healthBar, 100, 30);
         faithBar = new FaithBar(player);
@@ -38,7 +40,7 @@ public class ForestBattle extends BattleField
         
         
         bgm = new GreenfootSound("BGM/BattleTheme1.mp3");
-        bgm.playLoop();
+        //bgm.playLoop();
         Greenfoot.delay(35);
         player = c;
     }
@@ -313,21 +315,21 @@ public class ForestBattle extends BattleField
         {
             monster = Greenfoot.getRandomNumber(5); // We need each so there is a different monster in each slot
             enemy1 = randomMonster(monster);
-            addObject(enemy1, 450, 50);
+            addObject(enemy1, 390, 60);
             numEnemies++;
         }
         if (enemies >= 2)
         {
             monster = Greenfoot.getRandomNumber(5); // We need each so there is a different monster in each slot
             enemy2 = randomMonster(monster);
-            addObject(enemy2, 500, 100);
+            addObject(enemy2, 520, 110);
             numEnemies++;
         }
         if (enemies == 3)
         {
             monster = Greenfoot.getRandomNumber(5); // We need each so there is a different monster in each slot
             enemy3 = randomMonster(monster);
-            addObject(enemy3, 370, 170);
+            addObject(enemy3, 390, 180);
             numEnemies++;
         }
     }
