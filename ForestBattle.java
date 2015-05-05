@@ -40,7 +40,7 @@ public class ForestBattle extends BattleField
         
         
         bgm = new GreenfootSound("BGM/BattleTheme1.mp3");
-        //bgm.playLoop();
+        bgm.playLoop();
         Greenfoot.delay(35);
         player = c;
     }
