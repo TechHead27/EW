@@ -25,7 +25,7 @@ public class Character extends Actor
      */
     private int health, faith;
     private int strength, defense, piety, will, speed;
-    private int maxHP;
+    private int maxHP, maxMP, curExp, nextLvl, lvl;
     
     public Character(int startx, int starty)
     {
@@ -45,6 +45,11 @@ public class Character extends Actor
         will = 15;
         speed = 15;
         maxHP = 100;
+        maxMP = 100;
+        
+        curExp = 0;
+        nextLvl = 100;
+        lvl = 1;
     }
     /**
      * Act - do whatever the Character wants to do. This method is called whenever
@@ -105,10 +110,11 @@ public class Character extends Actor
      * Attack with a magical attack
      * @return the amount of damage dealt
      */
-    public int cast(Monster m)
+    public int cast(Monster m, int cost)
     {
         int damage = 0;
         int monMDef = m.getWill();
+        faith -= cost;
         
         damage = (piety * 2) / (monMDef * 3);
         if (damage == 0) damage = 1;
@@ -136,6 +142,11 @@ public class Character extends Actor
     public int getHealthPercent()
     {
         return health * 100 / maxHP;
+    }
+    
+    public int getFaithPercent()
+    {
+        return faith * 100 / maxMP;
     }
     
     public int getHealth()

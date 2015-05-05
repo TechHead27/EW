@@ -10,6 +10,7 @@ public class ForestBattle extends BattleField
 {
     private Monster enemy1, enemy2, enemy3;
     private HealthBar healthBar;
+    private FaithBar faithBar;
     private Character player;
     private GreenfootSound bgm;
     private int numEnemies;
@@ -31,7 +32,10 @@ public class ForestBattle extends BattleField
         player.setMovable(false);
         addObject(player, 100, 300);
         healthBar = new HealthBar(player);
-        addObject(healthBar, 100, 360);
+        addObject(healthBar, 100, 30);
+        faithBar = new FaithBar(player);
+        addObject(faithBar, 100, 80);
+        
         
         bgm = new GreenfootSound("BGM/BattleTheme1.mp3");
         bgm.playLoop();
@@ -57,7 +61,15 @@ public class ForestBattle extends BattleField
             int damage;
             if (player.getSpeed() > enemy1.getSpeed())
             {
-                damage = player.attack(enemy1);
+                if (player.getFaith() - 4 < 0)
+                {
+                    damage = player.attack(enemy1);
+                }
+                else
+                {
+                    damage = player.cast(enemy1, 4);
+                    faithBar.setFaithImage(player);
+                }
                 // if the damage was enough to kill the monster
                 if (enemy1.getHealth() - damage <= 0)
                 {
@@ -105,9 +117,17 @@ public class ForestBattle extends BattleField
                 {
                     player.setHealth(player.getHealth() - damage);
                     healthBar.setHealthImage(player);
-                    damage = player.attack(enemy1);
+                    if (player.getFaith() - 4 <= 0)
+                    {
+                        damage = player.attack(enemy1);
+                    }
+                    else
+                    {
+                        damage = player.cast(enemy1, 4);
+                        faithBar.setFaithImage(player);
+                    }
                     // if the damage was enough to kill the monster
-                    if (player.getHealth() - damage <= 0)
+                    if (enemy1.getHealth() - damage <= 0)
                     {
                         removeObject(enemy1);
                         showText("Monster defeated!", 400, 360);
@@ -178,7 +198,7 @@ public class ForestBattle extends BattleField
                     healthBar.setHealthImage(player);
                     damage = player.attack(enemy2);
                     // if the damage was enough to kill the monster
-                    if (player.getHealth() - damage <= 0)
+                    if (enemy2.getHealth() - damage <= 0)
                     {
                         removeObject(enemy2);
                         showText("Monster defeated!", 400, 360);
@@ -249,7 +269,7 @@ public class ForestBattle extends BattleField
                     healthBar.setHealthImage(player);
                     damage = player.attack(enemy3);
                     // if the damage was enough to kill the monster
-                    if (player.getHealth() - damage <= 0)
+                    if (enemy3.getHealth() - damage <= 0)
                     {
                         removeObject(enemy3);
                         showText("Monster defeated!", 400, 360);

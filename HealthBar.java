@@ -14,16 +14,8 @@ public class HealthBar extends Actor
         super();
         setHealthImage(player);
         bar = new GreenfootImage(getHealthPath(player));
-        bar.scale(150, 40);
+        bar.scale(180, 48);
         setImage(bar);
-    }
-    /**
-     * Act - do whatever the HealthBar wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
     }
     
     /**
@@ -32,7 +24,7 @@ public class HealthBar extends Actor
     public void setHealthImage(Character player)
     {
         bar = new GreenfootImage(getHealthPath(player));
-        bar.scale(150, 40);
+        bar.scale(180, 48);
         setImage(bar);
     }
     
@@ -66,6 +58,5 @@ public class HealthBar extends Actor
         
         newPath = "images/hpbar/hp_" + barNum + "%.png";
         return newPath;
-        //this.setImage("images/hpbar/hp_" + health + "%.png");
     }
 }
