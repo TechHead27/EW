@@ -19,7 +19,7 @@ public class Slime extends Monster
         strength = 3;
         defense = 2;
         piety = 0;
-        will = 0;
+        will = 1;
         speed = 4;
     }
     

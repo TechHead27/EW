@@ -85,17 +85,19 @@ public class ForestBattle extends BattleField
                     enemy1.setHealth(enemy1.getHealth() - damage);
                     showText("Attacked " + enemy1.getClass().getName(), 400, 360);
                     damage = enemy1.chooseAttack(player);
+                    Greenfoot.delay(50);
                     // if the damage was enough to kill the player
                     if (player.getHealth() - damage <= 0)
                     {
                         bgm.stop();
                         removeObject(player);
-                        removeObject(healthBar);
+                        //removeObject(healthBar);
                         showText("You died!", 400, 360);
                         Greenfoot.stop();
                     }
                     else
                     {
+                        showText("Attacked by " + enemy1.getClass().getName(), 400, 360);
                         player.setHealth(player.getHealth() - damage);
                         healthBar.setHealthImage(player);
                         Greenfoot.delay(50);
@@ -111,14 +113,16 @@ public class ForestBattle extends BattleField
                 {
                     bgm.stop();
                     removeObject(player);
-                    removeObject(healthBar);
+                    //removeObject(healthBar);
                     showText("You died!", 400, 360);
                     Greenfoot.stop();
                 }
                 else
                 {
+                    showText("Attacked by " + enemy1.getClass().getName(), 400, 360);
                     player.setHealth(player.getHealth() - damage);
                     healthBar.setHealthImage(player);
+                    Greenfoot.delay(50);
                     if (player.getFaith() - 4 <= 0)
                     {
                         damage = player.attack(enemy1);
@@ -164,17 +168,19 @@ public class ForestBattle extends BattleField
                     enemy2.setHealth(enemy2.getHealth() - damage);
                     showText("Attacked " + enemy2.getClass().getName(), 400, 360);
                     damage = enemy2.chooseAttack(player);
+                    Greenfoot.delay(50);
                     // if the damage was enough to kill the player
                     if (player.getHealth() - damage <= 0)
                     {
                         bgm.stop();
                         removeObject(player);
-                        removeObject(healthBar);
+                        //removeObject(healthBar);
                         showText("You died!", 400, 360);
                         Greenfoot.stop();
                     }
                     else
                     {
+                        showText("Attacked by " + enemy2.getClass().getName(), 400, 360);
                         player.setHealth(player.getHealth() - damage);
                         healthBar.setHealthImage(player);
                         Greenfoot.delay(50);
@@ -190,15 +196,17 @@ public class ForestBattle extends BattleField
                 {
                     bgm.stop();
                     removeObject(player);
-                    removeObject(healthBar);
+                    //removeObject(healthBar);
                     showText("You died!", 400, 360);
                     Greenfoot.stop();
                 }
                 else
                 {
+                    showText("Attacked by " + enemy2.getClass().getName(), 400, 360);
                     player.setHealth(player.getHealth() - damage);
                     healthBar.setHealthImage(player);
                     damage = player.attack(enemy2);
+                    Greenfoot.delay(50);
                     // if the damage was enough to kill the monster
                     if (enemy2.getHealth() - damage <= 0)
                     {
@@ -235,17 +243,19 @@ public class ForestBattle extends BattleField
                     enemy3.setHealth(enemy3.getHealth() - damage);
                     showText("Attacked " + enemy3.getClass().getName(), 400, 360);
                     damage = enemy3.chooseAttack(player);
+                    Greenfoot.delay(50);
                     // if the damage was enough to kill the player
                     if (player.getHealth() - damage <= 0)
                     {
                         bgm.stop();
                         removeObject(player);
-                        removeObject(healthBar);
+                        //removeObject(healthBar);
                         showText("You died!", 400, 360);
                         Greenfoot.stop();
                     }
                     else
                     {
+                        showText("Attacked by " + enemy3.getClass().getName(), 400, 360);
                         player.setHealth(player.getHealth() - damage);
                         healthBar.setHealthImage(player);
                         Greenfoot.delay(50);
@@ -261,15 +271,17 @@ public class ForestBattle extends BattleField
                 {
                     bgm.stop();
                     removeObject(player);
-                    removeObject(healthBar);
+                    //removeObject(healthBar);
                     showText("You died!", 400, 360);
                     Greenfoot.stop();
                 }
                 else
                 {
+                    showText("Attacked by " + enemy3.getClass().getName(), 400, 360);
                     player.setHealth(player.getHealth() - damage);
                     healthBar.setHealthImage(player);
                     damage = player.attack(enemy3);
+                    Greenfoot.delay(50);
                     // if the damage was enough to kill the monster
                     if (enemy3.getHealth() - damage <= 0)
                     {
@@ -286,6 +298,12 @@ public class ForestBattle extends BattleField
                     }
                 }
             }
+        }
+        // no one but jt ever run this command unless you want possible exceptions
+        else if (Greenfoot.isKeyDown("8"))
+        {
+            //battleAll(player, enemy1, null, null);
+            //healthBar.sethealthImage(player);
         }
         
         if (numEnemies == 0)
