@@ -9,7 +9,10 @@ import greenfoot.*;
  */
 public class BattleField extends World
 {
-
+    public static String WRECK = "Attack ";
+    public static String REKT  = "Attacked by ";
+    public static String DEAD  = "You died!";
+    public static String WIN   = "Monster defeated!";
     /**
      * Constructor for objects of class BattleField.
      * 

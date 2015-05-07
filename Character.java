@@ -38,14 +38,14 @@ public class Character extends Actor
         y = starty;
         
         health = 100;
-        faith = 100;
+        faith = 50;
         strength = 15;
         defense = 15;
         piety = 15;
         will = 15;
         speed = 15;
         maxHP = 100;
-        maxMP = 100;
+        maxMP = 50;
         
         curExp = 0;
         nextLvl = 100;
