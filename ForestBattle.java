@@ -294,6 +294,60 @@ public class ForestBattle extends BattleField
         return null;
     }
     
+    /**
+     * Attack the monster with physical attack
+     * @param enemy The enemy being attacked
+     */
+    public int attackMonster(Monster enemy)
+    {
+        return player.attack(enemy1);
+    }
+    
+    /**
+     * Attack the monster with magical attack
+     * @param enemy The enemy being attacked
+     */
+    public int castMonster(Monster enemy, int cost)
+    {
+        int temp = player.cast(enemy1, cost);
+        faithBar.setFaithImage(player);
+        return temp;
+    }
+    
+    /**
+     * Attack the player with physical or magical
+     * @param enemy The enemy attacking the player
+     */
+    public int attackPlayer(Monster enemy)
+    {
+        return enemy.chooseAttack(player);
+    }
+    
+    /**
+     * Killed the monster
+     * @param enemy The enemy that was killed
+     */
+    public void killMonster(Monster enemy)
+    {
+        removeObject(enemy1);
+        showText(BattleField.WIN, 400, 360);
+        Greenfoot.delay(50);
+        numEnemies--;
+    }
+    
+    /**
+     * Player was killed
+     */
+    public void killPlayer()
+    {
+        player.setHealth(0);
+        healthBar.setHealthImage(player);
+        bgm.stop();
+        removeObject(player);
+        showText(BattleField.DEAD, 400, 360);
+        Greenfoot.stop();
+    }
+    
     public void doBattle()
     {
         int damage;
@@ -301,35 +355,27 @@ public class ForestBattle extends BattleField
             {
                 if (player.getFaith() - 4 < 0)
                 {
-                    damage = player.attack(enemy1);
+                    damage = attackMonster(enemy1);
                 }
                 else
                 {
-                    damage = player.cast(enemy1, 4);
-                    faithBar.setFaithImage(player);
+                    damage = castMonster(enemy1, 4);
                 }
                 // if the damage was enough to kill the monster
                 if (enemy1.getHealth() - damage <= 0)
                 {
-                    removeObject(enemy1);
-                    showText(BattleField.WIN, 400, 360);
-                    Greenfoot.delay(50);
-                    numEnemies--;
+                    killMonster(enemy1);
                 }
                 else
                 {
                     enemy1.setHealth(enemy1.getHealth() - damage);
                     showText(BattleField.WRECK + enemy1.getClass().getName(), 400, 360);
-                    damage = enemy1.chooseAttack(player);
+                    damage = attackPlayer(enemy1);
                     Greenfoot.delay(50);
                     // if the damage was enough to kill the player
                     if (player.getHealth() - damage <= 0)
                     {
-                        bgm.stop();
-                        removeObject(player);
-                        //removeObject(healthBar);
-                        showText(BattleField.DEAD, 400, 360);
-                        Greenfoot.stop();
+                        killPlayer();
                     }
                     else
                     {
@@ -343,15 +389,11 @@ public class ForestBattle extends BattleField
             // monster is faster O.O
             else
             {
-                damage = enemy1.chooseAttack(player);
+                damage = attackPlayer(enemy1);
                 // if the damage was enough to kill the player
                 if (player.getHealth() - damage <= 0)
                 {
-                    bgm.stop();
-                    removeObject(player);
-                    //removeObject(healthBar);
-                    showText(BattleField.DEAD, 400, 360);
-                    Greenfoot.stop();
+                    killPlayer();
                 }
                 else
                 {
@@ -361,20 +403,16 @@ public class ForestBattle extends BattleField
                     Greenfoot.delay(50);
                     if (player.getFaith() - 4 <= 0)
                     {
-                        damage = player.attack(enemy1);
+                        damage = attackMonster(enemy1);
                     }
                     else
                     {
-                        damage = player.cast(enemy1, 4);
-                        faithBar.setFaithImage(player);
+                        damage = castMonster(enemy1, 4);
                     }
                     // if the damage was enough to kill the monster
                     if (enemy1.getHealth() - damage <= 0)
                     {
-                        removeObject(enemy1);
-                        showText(BattleField.WIN, 400, 360);
-                        Greenfoot.delay(50);
-                        numEnemies--;
+                        killMonster(enemy1);
                     }
                     else
                     {
