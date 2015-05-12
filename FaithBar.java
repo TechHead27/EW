@@ -14,7 +14,7 @@ public class FaithBar extends Actor
         super();
         setFaithImage(player);
         bar = new GreenfootImage(getFaithPath(player));
-        bar.scale(180, 48);
+        bar.scale(150, 40);
         setImage(bar);
     }
     
@@ -24,7 +24,7 @@ public class FaithBar extends Actor
     public void setFaithImage(Character player)
     {
         bar = new GreenfootImage(getFaithPath(player));
-        bar.scale(180, 48);
+        bar.scale(150, 40);
         setImage(bar);
     }
     

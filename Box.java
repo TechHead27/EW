@@ -21,11 +21,18 @@ public class Box extends Actor
         else
         {
             // use the image to wrap the monster
-            image = new GreenfootImage("images/menus/battlemenu.png");
-            image.scale(120,120);
+            image = new GreenfootImage("images/hitBox.png");
+            image.scale(125,125);
             setImage(image);
         }
     }
+    
+    /**
+     * surround enemies
+     * enemy1 - 390, 60
+     * enemy2 - 520, 110
+     * enemy3 - 390, 180
+     */
 
     
 }

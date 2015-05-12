@@ -14,7 +14,7 @@ public class HealthBar extends Actor
         super();
         setHealthImage(player);
         bar = new GreenfootImage(getHealthPath(player));
-        bar.scale(180, 48);
+        bar.scale(150, 40);
         setImage(bar);
     }
     
@@ -24,7 +24,7 @@ public class HealthBar extends Actor
     public void setHealthImage(Character player)
     {
         bar = new GreenfootImage(getHealthPath(player));
-        bar.scale(180, 48);
+        bar.scale(150, 40);
         setImage(bar);
     }
     

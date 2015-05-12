@@ -25,7 +25,7 @@ public class ForestBattle extends BattleField
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super();
         showText("Monster appeared!", 400, 360);
-        background = new GreenfootImage("images/menus/battlemenu.png");
+        background = new GreenfootImage("images/menus/battlemenu(1).png");
         background.scale(600, 400);
         setBackground(background);
 
@@ -34,12 +34,12 @@ public class ForestBattle extends BattleField
         player = c;
         player.setMovable(false);
         player.battleReady();
-        addObject(player, 100, 180);
+        addObject(player, 100, 160);
         
         healthBar = new HealthBar(player);
-        addObject(healthBar, 100, 30);
+        addObject(healthBar, 100, 25);
         faithBar = new FaithBar(player);
-        addObject(faithBar, 100, 80);
+        addObject(faithBar, 100, 67);
         
         
         bgm = new GreenfootSound("BGM/BattleTheme1.mp3");
