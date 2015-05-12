@@ -55,7 +55,7 @@ public class Character extends Actor
     public void battleReady()
     {
         GreenfootImage player = new GreenfootImage("images/priest/priest_victory1.png");
-        player.scale(160, 160);
+        player.scale(140, 140);
         setImage(player);
     }
     

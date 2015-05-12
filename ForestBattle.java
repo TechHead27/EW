@@ -14,6 +14,7 @@ public class ForestBattle extends BattleField
     private Character player;
     private GreenfootSound bgm;
     private int numEnemies;
+    private GreenfootImage background;
     
     /**
      * Constructor for objects of class ForestBattle.
@@ -24,14 +25,16 @@ public class ForestBattle extends BattleField
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super();
         showText("Monster appeared!", 400, 360);
-        setBackground("images/menus/battlemenu.png");
+        background = new GreenfootImage("images/menus/battlemenu.png");
+        background.scale(600, 400);
+        setBackground(background);
 
         createEnemies(enemies);
 
         player = c;
         player.setMovable(false);
         player.battleReady();
-        addObject(player, 100, 200);
+        addObject(player, 100, 180);
         
         healthBar = new HealthBar(player);
         addObject(healthBar, 100, 30);
