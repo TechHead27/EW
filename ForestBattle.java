@@ -25,7 +25,7 @@ public class ForestBattle extends BattleField
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super();
         showText("Monster appeared!", 400, 360);
-        background = new GreenfootImage("images/menus/battlemenu(1).png");
+        background = new GreenfootImage("images/menus/battlemenu(2).png");
         background.scale(600, 400);
         setBackground(background);
 
@@ -34,12 +34,12 @@ public class ForestBattle extends BattleField
         player = c;
         player.setMovable(false);
         player.battleReady();
-        addObject(player, 100, 160);
+        addObject(player, 157, 138);
         
         healthBar = new HealthBar(player);
-        addObject(healthBar, 100, 25);
+        addObject(healthBar, 77, 20);
         faithBar = new FaithBar(player);
-        addObject(faithBar, 100, 67);
+        addObject(faithBar, 225, 20);
         
         
         bgm = new GreenfootSound("BGM/BattleTheme1.mp3");
@@ -218,8 +218,8 @@ public class ForestBattle extends BattleField
         // no one but jt ever run this command unless you want possible exceptions
         else if (Greenfoot.isKeyDown("8"))
         {
-            //battleAll(player, enemy1, null, null);
-            //healthBar.sethealthImage(player);
+            bgm.stop();
+            Greenfoot.setWorld(new FinalBattle(player));
         }
         
         if (numEnemies == 0)
@@ -249,21 +249,21 @@ public class ForestBattle extends BattleField
         {
             monster = Greenfoot.getRandomNumber(5); // We need each so there is a different monster in each slot
             enemy1 = randomMonster(monster);
-            addObject(enemy1, 390, 60);
+            addObject(enemy1, 391, 52);
             numEnemies++;
         }
         if (enemies >= 2)
         {
             monster = Greenfoot.getRandomNumber(5); // We need each so there is a different monster in each slot
             enemy2 = randomMonster(monster);
-            addObject(enemy2, 520, 110);
+            addObject(enemy2, 537, 52);
             numEnemies++;
         }
         if (enemies == 3)
         {
             monster = Greenfoot.getRandomNumber(5); // We need each so there is a different monster in each slot
             enemy3 = randomMonster(monster);
-            addObject(enemy3, 390, 180);
+            addObject(enemy3, 445, 152);
             numEnemies++;
         }
     }

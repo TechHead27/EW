@@ -22,7 +22,7 @@ public class Box extends Actor
         {
             // use the image to wrap the monster
             image = new GreenfootImage("images/hitBox.png");
-            image.scale(125,125);
+            image.scale(105,105);
             setImage(image);
         }
     }

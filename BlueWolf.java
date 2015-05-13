@@ -12,7 +12,7 @@ public class BlueWolf extends Wolf
     {
         super();
         GreenfootImage wolf = new GreenfootImage("images/monsters/wolf_blue.png");
-        wolf.scale(120, 120);
+        wolf.scale(100, 100);
         setImage(wolf);
         
         health = 35;

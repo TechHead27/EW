@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Tue May 12 12:39:26 PDT 2015
+#Tue May 12 16:58:24 PDT 2015
 target16.name=FaithBar
 target2.name=RedWolf
 target9.name=YellowWolf
@@ -203,6 +203,7 @@ target3.naviview.expanded=true
 target11.editor.y=0
 target16.width=80
 target11.editor.x=0
+class.FinalBoss.superclass=Monster
 target10.typeParameters=
 target8.typeParameters=
 dependency12.to=MainMenu
@@ -223,6 +224,7 @@ target5.x=190
 target3.height=50
 dependency6.to=Slime
 target4.name=Character
+class.Box.superclass=greenfoot.Actor
 target1.y=10
 target1.x=180
 class.SkullSpider.superclass=Monster
@@ -245,6 +247,7 @@ dependency19.to=Character
 target13.editor.y=0
 target13.editor.x=0
 target4.height=50
+class.ForestMap2.superclass=greenfoot.World
 class.ForestBattle.image=burlap.jpg
 target8.naviview.expanded=true
 target15.showInterface=false
@@ -256,6 +259,7 @@ dependency13.to=Monster
 dependency3.type=UsesDependency
 target8.editor.height=728
 target15.editor.width=683
+class.FinalBattle.superclass=BattleField
 dependency7.from=MainMenu
 target6.width=80
 target6.editor.y=0
@@ -317,7 +321,7 @@ target8.editor.y=0
 target8.editor.x=683
 target14.editor.height=700
 target11.editor.width=683
-world.lastInstantiated=MainMenu
+world.lastInstantiated=ForestBattle
 dependency14.to=Character
 class.Slime.superclass=Monster
 target1.height=50
