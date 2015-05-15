@@ -7,7 +7,8 @@ import greenfoot.*;
  * @version (a version number or a date)
  */
 public class ForestBattle extends BattleField
-{    
+{   
+    private final int[][] options = {{75, 304}, {75, 330}, {75, 356}, {75, 382}};
     private Monster enemy1, enemy2, enemy3;
     private HealthBar healthBar;
     private FaithBar faithBar;
@@ -15,6 +16,8 @@ public class ForestBattle extends BattleField
     private GreenfootSound bgm;
     private int numEnemies;
     private GreenfootImage background;
+    
+    private Arrow selector;
     
     /**
      * Constructor for objects of class ForestBattle.
@@ -24,10 +27,22 @@ public class ForestBattle extends BattleField
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super();
-        showText("Monster appeared!", 400, 360);
-        background = new GreenfootImage("images/menus/battlemenu(2).png");
+        showText("Monster appeared!", 300, 244);
+        background = new GreenfootImage("images/menus/battlemenu.png");
         background.scale(600, 400);
         setBackground(background);
+        
+        selector = new Arrow(options);
+        addObject(selector, 75, 304);
+        
+        showText("ATTACK", 135, 298);
+        showText("Standard physical attack", 350, 298);
+        showText("MAGIC", 144, 324);
+        showText("Standard magical attack", 347, 324);
+        showText("PRAY", 150, 350);
+        showText("Recover faith", 296, 350);
+        showText("RUN", 155, 376);
+        showText("Try to run from battle!", 335, 376);
 
         createEnemies(enemies);
 
@@ -50,6 +65,7 @@ public class ForestBattle extends BattleField
     
     public void act()
     {
+        showText("", 300, 244);
         if (Greenfoot.isKeyDown("enter"))
         {
             bgm.stop();

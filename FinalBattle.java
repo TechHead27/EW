@@ -8,6 +8,7 @@ import greenfoot.*;
  */
 public class FinalBattle extends BattleField
 {
+    private final int[][] options = {{75, 304}, {75, 330}, {75, 356}};//, {75, 382}};
     private Monster boss;
     private HealthBar healthBar;
     private FaithBar faithBar;
@@ -15,13 +16,30 @@ public class FinalBattle extends BattleField
     private GreenfootSound bgm;
     private GreenfootImage background;
     
+    private Arrow selector;
+    
     public FinalBattle(Character c)
     {
         super();
-        showText("Toilet appeared!", 400, 360);
-        background = new GreenfootImage("images/menus/battlemenu(2).png");
+        showText("Toilet appeared!", 300, 244);
+        background = new GreenfootImage("images/menus/battlemenu.png");
         background.scale(600, 400);
         setBackground(background);
+        selector = new Arrow(options);
+        addObject(selector, 75, 304);
+        
+        //GreenfootImage g = new GreenfootImage("hello", 20, java.awt.Color.green, java.awt.Color.white);
+        //selector.setImage(g);
+        
+        
+        showText("ATTACK", 135, 298);
+        showText("Standard physical attack", 350, 298);
+        showText("MAGIC", 144, 324);
+        showText("Standard magical attack", 347, 324);
+        showText("PRAY", 150, 350);
+        showText("Recover faith", 296, 350);
+        showText("RUN", 155, 376);
+        showText("Cannot run from this toilet!", 358, 376);
         
         // set up toilet
         boss = new FinalBoss();
@@ -45,7 +63,7 @@ public class FinalBattle extends BattleField
     
     public void act()
     {
-        showText("", 400, 360);
+        showText("", 300, 244);
         if (Greenfoot.isKeyDown("7"))
         {
             bgm.stop();
@@ -53,18 +71,18 @@ public class FinalBattle extends BattleField
             GreenfootSound victory = new GreenfootSound("BGM/VictoryFanFare.mp3");
             victory.playLoop();
             
-            showText("YOU HAVE PROTECTED THE WORLD FROM",300,270);
-            showText("THE EVIL POSSESED TOILET.",300,290);
+            showText("YOU HAVE PROTECTED THE WORLD FROM",300,236);
+            showText("THE EVIL POSSESED TOILET.",300,256);
             Greenfoot.delay(100);
             
-            while(!Greenfoot.isKeyDown("enter")) {
-                showText("YOU HAVE FREED THE PEOPLE OF THEIR FEAR OF", 300, 270);
-                showText("POOPING AND CLOSED THE SWIRLING VORTEX WITHIN.", 300, 290);
-            }
-            Greenfoot.delay(50);
-            while(!Greenfoot.isKeyDown("enter")) {
+            //while(!Greenfoot.isKeyDown("enter")) {
+                showText("YOU HAVE FREED THE PEOPLE OF THEIR FEAR OF", 300, 236);
+                showText("POOPING AND CLOSED THE SWIRLING VORTEX WITHIN.", 300, 256);
+            //}
+            Greenfoot.delay(500);
+            //while(!Greenfoot.isKeyDown("enter")) {
                 
-            }
+            //}
             Greenfoot.delay(5);
             victory.stop();
             Greenfoot.setWorld(new Credits("images/credits/credits1.png"));
