@@ -16,8 +16,11 @@ public class ForestBattle extends BattleField
     private GreenfootSound bgm;
     private int numEnemies;
     private GreenfootImage background;
+    private boolean alreadyActing;
+    private int last;
     
     private Arrow selector;
+    private Box enemySelector = new Box(false);
     
     /**
      * Constructor for objects of class ForestBattle.
@@ -27,7 +30,7 @@ public class ForestBattle extends BattleField
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super();
-        showText("Monster appeared!", 300, 244);
+        //showText("Monster appeared!", 300, 244);
         background = new GreenfootImage("images/menus/battlemenu.png");
         background.scale(600, 400);
         setBackground(background);
@@ -43,9 +46,23 @@ public class ForestBattle extends BattleField
         showText("Recover faith", 296, 350);
         showText("RUN", 155, 376);
         showText("Try to run from battle!", 335, 376);
-
+        
         createEnemies(enemies);
-
+        if(enemy1 != null && enemy2 != null && enemy3 != null)
+        {
+            if((enemy1.getClass().getName().equals("RedWolf") && enemy2.getClass().getName().equals("BlueWolf") && enemy3.getClass().getName().equals("YellowWolf")) ||
+               (enemy1.getClass().getName().equals("RedWolf") && enemy3.getClass().getName().equals("BlueWolf") && enemy2.getClass().getName().equals("YellowWolf")) ||
+               (enemy2.getClass().getName().equals("RedWolf") && enemy1.getClass().getName().equals("BlueWolf") && enemy3.getClass().getName().equals("YellowWolf")) ||
+               (enemy2.getClass().getName().equals("RedWolf") && enemy3.getClass().getName().equals("BlueWolf") && enemy1.getClass().getName().equals("YellowWolf")) ||
+               (enemy3.getClass().getName().equals("RedWolf") && enemy1.getClass().getName().equals("BlueWolf") && enemy2.getClass().getName().equals("YellowWolf")) ||
+               (enemy3.getClass().getName().equals("RedWolf") && enemy2.getClass().getName().equals("BlueWolf") && enemy1.getClass().getName().equals("YellowWolf")))
+                showText("THUNDERCATS GO!!!!!!", 300, 244);
+            else
+                showText("Monster appeared!", 300, 244);
+        }
+        else
+            showText("Monster appeared!", 300, 244);
+        
         player = c;
         player.setMovable(false);
         player.battleReady();
@@ -61,12 +78,167 @@ public class ForestBattle extends BattleField
         bgm.playLoop();
         Greenfoot.delay(35);
         player = c;
+        alreadyActing = false;
+    }
+    
+    private void chooseEnemy(boolean physical)
+    {
+        alreadyActing = true;
+        if(last == 1 && enemy1 != null && enemy1.getWorld() != null)
+            chooseOne();
+        else if(last == 2 && enemy2 != null && enemy2.getWorld() != null)
+            chooseTwo();
+        else if(last == 3 && enemy3 != null && enemy3.getWorld() != null)
+            chooseThree();
+        else if(enemy1 != null && enemy1.getWorld() != null)
+            chooseOne();
+        else if(enemy2 != null && enemy2.getWorld() != null)
+            chooseTwo();
+        else
+            chooseThree();
+        Greenfoot.delay(50);
+        while(!(Greenfoot.isKeyDown("enter")))
+        {
+            // currently selecting enemy1
+            if(enemySelector.x == 391)
+            {
+                // go back one enemy
+                if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left"))
+                {
+                    // enemy3 exists
+                    if(enemy3 != null && enemy3.getWorld() != null)
+                    {
+                        chooseThree();
+                    }
+                    // enemy3 does not exist, but enemy2 does
+                    else if(enemy2 != null && enemy2.getWorld() != null)
+                    {
+                        chooseTwo();
+                    }
+                }
+                // go forward one enemy
+                else if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("right"))
+                {
+                    // enemy2 exists
+                    if(enemy2 != null && enemy2.getWorld() != null)
+                    {
+                        chooseTwo();
+                    }
+                    // enemy2 does not exist, but enemy3 does
+                    else if(enemy3 != null && enemy3.getWorld() != null)
+                    {
+                        chooseThree();
+                    }
+                }
+            }
+            // currently selecting enemy2
+            else if(enemySelector.x == 537)
+            {
+                // go back one enemy
+                if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left"))
+                {
+                    // enemy1 exists
+                    if(enemy1 != null && enemy1.getWorld() != null)
+                    {
+                        chooseOne();
+                    }
+                    // enemy1 does not exist, but enemy3 does
+                    else if(enemy3 != null && enemy3.getWorld() != null)
+                    {
+                        chooseThree();
+                    }
+                }
+                // go forward one enemy
+                else if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("right"))
+                {
+                    // enemy3 exists
+                    if(enemy3 != null && enemy3.getWorld() != null)
+                    {
+                        chooseThree();
+                    }
+                    // enemy3 does not exist, but enemy1 does
+                    else if(enemy1 != null && enemy1.getWorld() != null)
+                    {
+                        chooseOne();
+                    }
+                }
+            }
+            // currently selecting enemy3
+            else
+            {
+                // go back one enemy
+                if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left"))
+                {
+                    // enemy2 exists
+                    if(enemy2 != null && enemy2.getWorld() != null)
+                    {
+                        chooseTwo();
+                    }
+                    // enemy2 does not exist, but enemy1 does
+                    else if(enemy1 != null && enemy1.getWorld() != null)
+                    {
+                        chooseOne();
+                    }
+                }
+                // go forward one enemy
+                else if(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("right"))
+                {
+                    // enemy1 exists
+                    if(enemy1 != null && enemy1.getWorld() != null)
+                    {
+                        chooseOne();
+                    }
+                    // enemy1 does not exist, but enemy2 does
+                    else if(enemy2 != null && enemy2.getWorld() != null)
+                    {
+                        chooseTwo();
+                    }
+                }
+            }
+            Greenfoot.delay(5);
+        }
+        removeObject(enemySelector);
+        melee((enemySelector.x == 391 ? enemy1 : (enemySelector.x == 537 ? enemy2 : enemy3)),
+              enemy1, enemy2, enemy3, physical);
+        alreadyActing = false;
+        Greenfoot.delay(50);
+    }
+    
+    private void chooseOne()
+    {
+        last = 1;
+        removeObject(enemySelector);
+        addObject(enemySelector, 391, 52);
+        enemySelector.x = 391;
+        enemySelector.y = 52;
+        showText("Attack " + enemy1.getClass().getName() + "?", 300, 244);
+    }
+    
+    private void chooseTwo()
+    {
+        last = 2;
+        removeObject(enemySelector);
+        addObject(enemySelector, 537, 52);
+        enemySelector.x = 537;
+        enemySelector.y = 52;
+        showText("Attack " + enemy2.getClass().getName() + "?", 300, 244);
+    }
+    
+    private void chooseThree()
+    {
+        last = 3;
+        removeObject(enemySelector);
+        addObject(enemySelector, 445, 152);
+        enemySelector.x = 445;
+        enemySelector.y = 152;
+        showText("Attack " + enemy3.getClass().getName() + "?", 300, 244);
     }
     
     public void act()
-    {
+    {   if(!alreadyActing)
+        {
         showText("", 300, 244);
-        if (Greenfoot.isKeyDown("enter"))
+        if (Greenfoot.isKeyDown("escape"))
         {
             bgm.stop();
             removeObject(enemy1);
@@ -77,161 +249,30 @@ public class ForestBattle extends BattleField
             victory.stop();
             Greenfoot.setWorld(new ForestMap1(player));
         }
-        else if(Greenfoot.isKeyDown("1") && enemy1 != null && enemy1.getWorld() != null)
+        else if (Greenfoot.isKeyDown("enter"))
         {
-            doBattle();
-        }
-        else if(Greenfoot.isKeyDown("2") && enemy2 != null && enemy2.getWorld() != null)
-        {
-            int damage;
-            if (player.getSpeed() > enemy2.getSpeed())
+            switch (selector.getSelection())
             {
-                damage = player.attack(enemy2);
-                // if the damage was enough to kill the monster
-                if (enemy2.getHealth() - damage <= 0)
-                {
-                    removeObject(enemy2);
-                    showText("Monster defeated!", 400, 360);
-                    Greenfoot.delay(50);
-                    numEnemies--;
-                }
-                else
-                {
-                    enemy2.setHealth(enemy2.getHealth() - damage);
-                    showText("Attacked " + enemy2.getClass().getName(), 400, 360);
-                    damage = enemy2.chooseAttack(player);
-                    Greenfoot.delay(50);
-                    // if the damage was enough to kill the player
-                    if (player.getHealth() - damage <= 0)
-                    {
-                        bgm.stop();
-                        removeObject(player);
-                        //removeObject(healthBar);
-                        showText("You died!", 400, 360);
-                        Greenfoot.stop();
-                    }
-                    else
-                    {
-                        showText("Attacked by " + enemy2.getClass().getName(), 400, 360);
-                        player.setHealth(player.getHealth() - damage);
-                        healthBar.setHealthImage(player);
-                        Greenfoot.delay(50);
-                    }
-                }
-            }
-            // monster is faster O.O
-            else
-            {
-                damage = enemy2.chooseAttack(player);
-                // if the damage was enough to kill the player
-                if (player.getHealth() - damage <= 0)
-                {
-                    bgm.stop();
-                    removeObject(player);
-                    //removeObject(healthBar);
-                    showText("You died!", 400, 360);
-                    Greenfoot.stop();
-                }
-                else
-                {
-                    showText("Attacked by " + enemy2.getClass().getName(), 400, 360);
-                    player.setHealth(player.getHealth() - damage);
-                    healthBar.setHealthImage(player);
-                    damage = player.attack(enemy2);
-                    Greenfoot.delay(50);
-                    // if the damage was enough to kill the monster
-                    if (enemy2.getHealth() - damage <= 0)
-                    {
-                        removeObject(enemy2);
-                        showText("Monster defeated!", 400, 360);
-                        Greenfoot.delay(50);
-                        numEnemies--;
-                    }
-                    else
-                    {
-                        enemy2.setHealth(enemy2.getHealth() - damage);
-                        showText("Attacked " + enemy2.getClass().getName(), 400, 360);
-                        Greenfoot.delay(50);
-                    }
-                }
+                case 0: chooseEnemy(true);
+                        break;
+                case 1: if(player.getFaith() - 2 >= 0)
+                            chooseEnemy(false);
+                        else
+                        {
+                            showText("Not enough faith!", 300, 244);
+                            Greenfoot.delay(50);
+                        }
+                        break;
+                case 2: showText("prayed", 300, 244);
+                        //Greenfoot.delay(50);
+                        break;
+                case 3: showText("ran", 300, 244);
+                        //Greenfoot.delay(50);
+                        break;
+                default:break;
             }
         }
-        else if(Greenfoot.isKeyDown("3") && enemy3 != null && enemy3.getWorld() != null)
-        {
-            int damage;
-            if (player.getSpeed() > enemy3.getSpeed())
-            {
-                damage = player.attack(enemy3);
-                // if the damage was enough to kill the monster
-                if (enemy3.getHealth() - damage <= 0)
-                {
-                    removeObject(enemy3);
-                    showText("Monster defeated!", 400, 360);
-                    Greenfoot.delay(50);
-                    numEnemies--;
-                }
-                else
-                {
-                    enemy3.setHealth(enemy3.getHealth() - damage);
-                    showText("Attacked " + enemy3.getClass().getName(), 400, 360);
-                    damage = enemy3.chooseAttack(player);
-                    Greenfoot.delay(50);
-                    // if the damage was enough to kill the player
-                    if (player.getHealth() - damage <= 0)
-                    {
-                        bgm.stop();
-                        removeObject(player);
-                        //removeObject(healthBar);
-                        showText("You died!", 400, 360);
-                        Greenfoot.stop();
-                    }
-                    else
-                    {
-                        showText("Attacked by " + enemy3.getClass().getName(), 400, 360);
-                        player.setHealth(player.getHealth() - damage);
-                        healthBar.setHealthImage(player);
-                        Greenfoot.delay(50);
-                    }
-                }
-            }
-            // monster is faster O.O
-            else
-            {
-                damage = enemy3.chooseAttack(player);
-                // if the damage was enough to kill the player
-                if (player.getHealth() - damage <= 0)
-                {
-                    bgm.stop();
-                    removeObject(player);
-                    //removeObject(healthBar);
-                    showText("You died!", 400, 360);
-                    Greenfoot.stop();
-                }
-                else
-                {
-                    showText("Attacked by " + enemy3.getClass().getName(), 400, 360);
-                    player.setHealth(player.getHealth() - damage);
-                    healthBar.setHealthImage(player);
-                    damage = player.attack(enemy3);
-                    Greenfoot.delay(50);
-                    // if the damage was enough to kill the monster
-                    if (enemy3.getHealth() - damage <= 0)
-                    {
-                        removeObject(enemy3);
-                        showText("Monster defeated!", 400, 360);
-                        Greenfoot.delay(50);
-                        numEnemies--;
-                    }
-                    else
-                    {
-                        enemy2.setHealth(enemy3.getHealth() - damage);
-                        showText("Attacked " + enemy3.getClass().getName(), 400, 360);
-                        Greenfoot.delay(50);
-                    }
-                }
-            }
-        }
-        // no one but jt ever run this command unless you want possible exceptions
+        // auto go to final boss!
         else if (Greenfoot.isKeyDown("8"))
         {
             bgm.stop();
@@ -252,6 +293,7 @@ public class ForestBattle extends BattleField
         {
             showText("", 400, 360);
         }
+    }
     }
     
     /**
@@ -316,29 +358,38 @@ public class ForestBattle extends BattleField
     /**
      * Attack the monster with physical attack
      * @param enemy The enemy being attacked
+     * @return The amount of damage done
      */
     public int attackMonster(Monster enemy)
     {
-        return player.attack(enemy1);
+        showText(BattleField.WRECK + enemy.getClass().getName() + " with fists dealing " + player.attack(enemy) + " damage!", 300, 244);
+        Greenfoot.delay(60);
+        return player.attack(enemy);
     }
     
     /**
      * Attack the monster with magical attack
      * @param enemy The enemy being attacked
+     * @return The amount of damage done
      */
     public int castMonster(Monster enemy, int cost)
     {
-        int temp = player.cast(enemy1, cost);
+        int temp = player.cast(enemy, cost);
         faithBar.setFaithImage(player);
+        showText(BattleField.WRECK + enemy.getClass().getName() + " with magic dealing " + temp + " damage!", 300, 244);
+        Greenfoot.delay(60);
         return temp;
     }
     
     /**
      * Attack the player with physical or magical
      * @param enemy The enemy attacking the player
+     * @return The amount of damage done
      */
     public int attackPlayer(Monster enemy)
     {
+        showText(BattleField.REKT + enemy.getClass().getName() + " which dealt " + enemy.chooseAttack(player) + " damage!", 300, 244);
+        Greenfoot.delay(60);
         return enemy.chooseAttack(player);
     }
     
@@ -348,9 +399,9 @@ public class ForestBattle extends BattleField
      */
     public void killMonster(Monster enemy)
     {
-        removeObject(enemy1);
-        showText(BattleField.WIN, 400, 360);
-        Greenfoot.delay(50);
+        removeObject(enemy);
+        showText(enemy.getClass().getName() + BattleField.WIN, 300, 244);
+        Greenfoot.delay(60);
         numEnemies--;
     }
     
@@ -366,19 +417,19 @@ public class ForestBattle extends BattleField
         showText(BattleField.DEAD, 400, 360);
         Greenfoot.stop();
     }
-    
+    /**
     public void doBattle()
     {
         int damage;
             if (player.getSpeed() > enemy1.getSpeed())
             {
-                if (player.getFaith() - 4 < 0)
+                if (player.getFaith() - 2 < 0)
                 {
                     damage = attackMonster(enemy1);
                 }
                 else
                 {
-                    damage = castMonster(enemy1, 4);
+                    damage = castMonster(enemy1, 2);
                 }
                 // if the damage was enough to kill the monster
                 if (enemy1.getHealth() - damage <= 0)
@@ -420,13 +471,13 @@ public class ForestBattle extends BattleField
                     player.setHealth(player.getHealth() - damage);
                     healthBar.setHealthImage(player);
                     Greenfoot.delay(50);
-                    if (player.getFaith() - 4 <= 0)
+                    if (player.getFaith() - 2 <= 0)
                     {
                         damage = attackMonster(enemy1);
                     }
                     else
                     {
-                        damage = castMonster(enemy1, 4);
+                        damage = castMonster(enemy1, 2);
                     }
                     // if the damage was enough to kill the monster
                     if (enemy1.getHealth() - damage <= 0)
@@ -441,79 +492,101 @@ public class ForestBattle extends BattleField
                     }
                 }
             }
+    }*/
+    
+    private void playerTurn(Monster target, boolean physical)
+    {
+        int damage;
+        if(physical)
+        {
+            damage = attackMonster(target);
+            if(target.getHealth() - damage <= 0)
+                killMonster(target);
+            else
+                target.setHealth(target.getHealth() - damage);
+        }
+        else
+        {
+            damage = castMonster(target, 2);
+            if(target.getHealth() - damage <= 0)
+                killMonster(target);
+            else
+                target.setHealth(target.getHealth() - damage);
+        }
     }
     
-    private void jtjtjtjtjt(Character player, Monster m1, Monster m2, Monster m3)
+    private void monsterTurn(Monster fighter)
+    {
+        int damage;
+        if(fighter != null && fighter.getWorld() != null)
+        {
+            damage = attackPlayer(fighter);
+            if(player.getHealth() - damage <= 0)
+                killPlayer();
+            else
+            {
+                player.setHealth(player.getHealth() - damage);
+                healthBar.setHealthImage(player);
+            }
+        }
+    }
+    
+    private void melee(Monster target, Monster m1, Monster m2, Monster m3, boolean physical)
     {
         int charSpeed = 0;
-        if (m1.getSpeed() > player.getSpeed()) charSpeed += 1;
-        if (m2.getSpeed() > player.getSpeed()) charSpeed += 3;
-        if (m2.getSpeed() > player.getSpeed()) charSpeed += 5;
+        
+        if (m1 != null && m1.getWorld() != null && m1.getSpeed() > player.getSpeed()) charSpeed += 1;
+        if (m2 != null && m2.getWorld() != null && m2.getSpeed() > player.getSpeed()) charSpeed += 3;
+        if (m3 != null && m3.getWorld() != null && m3.getSpeed() > player.getSpeed()) charSpeed += 5;
         
         switch (charSpeed)
         {
-            case 0: player.attack(m1);
-                    player.attack(m2);
-                    player.attack(m3);
-                    m1.chooseAttack(player);
-                    m2.chooseAttack(player);
-                    m3.chooseAttack(player);
+            case 0: playerTurn(target, physical);
+                    monsterTurn(m1);
+                    monsterTurn(m2);
+                    monsterTurn(m3);
                     break;
             // only m1 is faster than player
-            case 1: m1.chooseAttack(player);
-                    player.attack(m1);
-                    player.attack(m2);
-                    player.attack(m3);
-                    m2.chooseAttack(player);
-                    m3.chooseAttack(player);
+            case 1: monsterTurn(m1);
+                    playerTurn(target, physical);
+                    monsterTurn(m2);
+                    monsterTurn(m3);
                     break;
             // only m2 is faster than player
-            case 3: m2.chooseAttack(player);
-                    player.attack(m1);
-                    player.attack(m2);
-                    player.attack(m3);
-                    m1.chooseAttack(player);
-                    m3.chooseAttack(player);
+            case 3: monsterTurn(m2);
+                    playerTurn(target, physical);
+                    monsterTurn(m1);
+                    monsterTurn(m3);
                     break;
             // only m3 is faster than player
-            case 5: m3.chooseAttack(player);
-                    player.attack(m1);
-                    player.attack(m2);
-                    player.attack(m3);
-                    m1.chooseAttack(player);
-                    m2.chooseAttack(player);
+            case 5: monsterTurn(m3);
+                    playerTurn(target, physical);
+                    monsterTurn(m1);
+                    monsterTurn(m2);
                     break;
             // m1 and m2 are faster than player
-            case 4: m1.chooseAttack(player);
-                    m2.chooseAttack(player);
-                    player.attack(m1);
-                    player.attack(m2);
-                    player.attack(m3);
-                    m3.chooseAttack(player);
+            case 4: monsterTurn(m1);
+                    monsterTurn(m2);
+                    playerTurn(target, physical);
+                    monsterTurn(m3);
                     break;
             // m1 and m3 are faster than player
-            case 6: m1.chooseAttack(player);
-                    m3.chooseAttack(player);
-                    player.attack(m1);
-                    player.attack(m2);
-                    player.attack(m3);
-                    m2.chooseAttack(player);
+            case 6: monsterTurn(m1);
+                    monsterTurn(m3);
+                    playerTurn(target, physical);
+                    monsterTurn(m2);
                     break;
             // m2 and m3 are faster than player
-            case 8: m2.chooseAttack(player);
-                    m3.chooseAttack(player);
-                    player.attack(m1);
-                    player.attack(m2);
-                    player.attack(m3);
-                    m1.chooseAttack(player);
+            case 8: monsterTurn(m2);
+                    monsterTurn(m3);
+                    playerTurn(target, physical);
+                    monsterTurn(m1);
                     break;
             // all monsters faster than player
-            case 9: m1.chooseAttack(player);
-                    m2.chooseAttack(player);
-                    m3.chooseAttack(player);
-                    player.attack(m1);
-                    player.attack(m2);
-                    player.attack(m3);
+            case 9: monsterTurn(m1);
+                    monsterTurn(m2);
+                    monsterTurn(m3);
+                    playerTurn(target, physical);
                     break;
         }
     }

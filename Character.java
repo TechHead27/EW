@@ -113,6 +113,7 @@ public class Character extends Actor
      */
     public int attack(Monster m)
     {
+        
         int damage = 0;
         int monDef = m.getDefense();
         

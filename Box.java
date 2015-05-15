@@ -8,6 +8,7 @@ import greenfoot.*;
  */
 public class Box extends Actor
 {
+    public int x, y;
     /**
      * Constructor for objects of class Box
      */
