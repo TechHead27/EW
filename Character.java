@@ -137,6 +137,18 @@ public class Character extends Actor
         return damage;
     }
     
+    /**
+     * Heal up to 5% of your faith back
+     * @return the amount of faith recovered
+     */
+    public int pray()
+    {
+        int recover, temp = 0;
+        temp = (int)(maxMP * 0.05);
+        recover = java.lang.Math.min(Greenfoot.getRandomNumber(temp+1), maxMP - faith);
+        return recover;
+    }
+    
     public boolean hasMoved()
     {
         boolean ret = moved;

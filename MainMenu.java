@@ -8,9 +8,13 @@ import greenfoot.*;
  */
 public class MainMenu extends World
 {
-    private final int[][] options = {{150, 120}, {150, 250}};
+    private final int[][] options = {{170, 96}, {170, 200}, {170, 304}};
     private Arrow selector;
     private GreenfootSound bgm;
+    
+    private MenuItem play = new MenuItem("images/buttons/button_play.png");
+    private MenuItem quit = new MenuItem("images/buttons/button_quit.png");;
+    private MenuItem credits = new MenuItem("images/buttons/button_play.png");;
     /**
      * Constructor for objects of class MainMenu.
      * 
@@ -20,10 +24,12 @@ public class MainMenu extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         selector = new Arrow(options);
-        addObject(selector, 150, 120);
+        addObject(selector, 170, 96);
+        addObject(play, 300, 90);
+        addObject(quit, 300, 195);
+        addObject(credits, 300, 300);
+        
         bgm = new GreenfootSound("BGM/TitleScreen.mp3");
-        //bgm.playLoop();
-        setBackground("images/menus/StartMenu.png");
     }
     
     public void act()
@@ -39,13 +45,12 @@ public class MainMenu extends World
                 case 1: Greenfoot.stop();
                         bgm.stop();
                         break;
+                case 2: Greenfoot.setWorld(new Credits("images/credits/credits1.png"));
+                        bgm.stop();
+                        break;
+                default://never get here
+                        break;
             }
-        }
-        
-        if (Greenfoot.isKeyDown("y"))
-        {
-            Greenfoot.setWorld(new Credits("images/credits/credits1.png"));
-            bgm.stop();
         }
     }
 }

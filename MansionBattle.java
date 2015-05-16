@@ -6,7 +6,7 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ForestBattle extends BattleField
+public class MansionBattle extends BattleField
 {   
     private final int[][] options = {{75, 304}, {75, 330}, {75, 356}, {75, 382}};
     private Monster enemy1, enemy2, enemy3;
@@ -26,7 +26,7 @@ public class ForestBattle extends BattleField
      * Constructor for objects of class ForestBattle.
      * 
      */
-    public ForestBattle(Character c, int enemies)
+    public MansionBattle(Character c, int enemies)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super();
@@ -219,7 +219,7 @@ public class ForestBattle extends BattleField
         addObject(enemySelector, 391, 52);
         enemySelector.x = 391;
         enemySelector.y = 52;
-        showText("Attack " + enemy1.getClass().getName() + "?", 300, 244);
+        showText(BattleField.WRECK + enemy1.getClass().getName() + "?", 300, 244);
     }
     
     private void chooseTwo()
@@ -229,7 +229,7 @@ public class ForestBattle extends BattleField
         addObject(enemySelector, 537, 52);
         enemySelector.x = 537;
         enemySelector.y = 52;
-        showText("Attack " + enemy2.getClass().getName() + "?", 300, 244);
+        showText(BattleField.WRECK + enemy2.getClass().getName() + "?", 300, 244);
     }
     
     private void chooseThree()
@@ -268,7 +268,7 @@ public class ForestBattle extends BattleField
             showText(BattleField.RUNYES, 300, 244);
             Greenfoot.delay(40);
             bgm.stop();
-            Greenfoot.setWorld(new ForestMap1(player));
+            Greenfoot.setWorld(new ForestMap2(player));
         }
         else
         {
@@ -296,7 +296,7 @@ public class ForestBattle extends BattleField
                 victory.playLoop();
                 Greenfoot.delay(150);
                 victory.stop();
-                Greenfoot.setWorld(new ForestMap1(player));
+                Greenfoot.setWorld(new ForestMap2(player));
             }
             else if (Greenfoot.isKeyDown(BattleField.ENTER))
             {
@@ -334,7 +334,7 @@ public class ForestBattle extends BattleField
                 victory.playLoop();
                 Greenfoot.delay(150);
                 victory.stop();
-                Greenfoot.setWorld(new ForestMap1(player));
+                Greenfoot.setWorld(new ForestMap2(player));
             }
         }
     }
@@ -371,13 +371,13 @@ public class ForestBattle extends BattleField
     
     /**
      * Pick the right monster from the array.
-     * 0 - Slime, 1 - Blue Wolf, 2 - Red Wolf, 3 - Yellow Wolf, 4 - Skull Spider
+     * 0 - Zombie, 1 - Blue Wolf, 2 - Red Wolf, 3 - Yellow Wolf, 4 - Skeleton
      */
     private Monster randomMonster(int index)
     {
         if (index == 0)
         {
-            return new Slime();
+            return new Zombie();
         }
         if (index == 1)
         {
@@ -393,7 +393,7 @@ public class ForestBattle extends BattleField
         }
         if (index == 4)
         {
-            return new SkullSpider();
+            return new Skeleton();
         }
         return null;
     }
