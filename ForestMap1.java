@@ -36,6 +36,7 @@ public class ForestMap1 extends World
     {
         // Create a new world with 12x8 cells with a cell size of 50x50 pixels.
         super(12, 8, 50);
+        background.scale(678, 432);
         player = c;
         player.setMovable(true);
         player.exploreReady();
@@ -44,7 +45,7 @@ public class ForestMap1 extends World
         gen = new java.util.Random();
         bgm = new GreenfootSound("BGM/Forest1.mp3");
         bgm.playLoop();
-        setBackground("images/map/tombstone.png");
+        setBackground(background);
     }
     
     public void act()
