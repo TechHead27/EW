@@ -15,6 +15,7 @@ public class BattleField extends World
     public static String WIN   = " defeated!";
     public static String RECOV = "Recovered ";
     public static String FAITH = " faith!";
+    public static String HEALTH= " health!";
     public static String RUNYES= "Escape success!";
     public static String RUNNO = "Escape failed!";
     public static String CHEAT = "Cheater!";

@@ -149,6 +149,18 @@ public class Character extends Actor
         return recover;
     }
     
+    /**
+     * Heal 15% of your health back
+     * @return the amount of health recovered
+     */
+    public int heal()
+    {
+        int recover, temp;
+        temp = (int)(maxHP * 0.15);
+        recover = java.lang.Math.min(temp, maxHP - health);
+        return recover;
+    }
+    
     public boolean hasMoved()
     {
         boolean ret = moved;
