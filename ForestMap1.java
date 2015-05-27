@@ -12,6 +12,7 @@ public class ForestMap1 extends World
     private Character player;
     private java.util.Random gen;
     private GreenfootSound bgm;
+    private GreenfootImage background = new GreenfootImage("images/map/scene1.png");
     /**
      * Constructor for objects of class ForestMap1.
      * 
@@ -20,13 +21,15 @@ public class ForestMap1 extends World
     {
         // Create a new world with 12x8 cells with a cell size of 50x50 pixels.
         super(12, 8, 50);
+        background.scale(678, 432);
         player = new Character(11, 7);
         addObject(player, 11, 7);
         Greenfoot.delay(15);
         gen = new java.util.Random();
         bgm = new GreenfootSound("BGM/Forest1.mp3");
         bgm.playLoop();
-        setBackground("images/map/tombstone.png");
+        //setBackground("images/map/tombstone.png");
+        setBackground(background);
     }
     
     public ForestMap1(Character c)
