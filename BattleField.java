@@ -9,30 +9,30 @@ import greenfoot.*;
  */
 public class BattleField extends World
 {
-    public static String WRECK = "Attack ";
-    public static String REKT  = "Attacked by ";
-    public static String DEAD  = "You died!";
-    public static String WIN   = " defeated!";
-    public static String RECOV = "Recovered ";
-    public static String FAITH = " faith!";
-    public static String HEALTH= " health!";
-    public static String RUNYES= "Escape success!";
-    public static String RUNNO = "Escape failed!";
-    public static String CHEAT = "Cheater!";
-    public static String NOMP  = "Not enough faith!";
+    public static final String WRECK = "Attack ";
+    public static final String REKT  = "Attacked by ";
+    public static final String DEAD  = "You died!";
+    public static final String WIN   = " defeated!";
+    public static final String RECOV = "Recovered ";
+    public static final String FAITH = " faith!";
+    public static final String HEALTH= " health!";
+    public static final String RUNYES= "Escape success!";
+    public static final String RUNNO = "Escape failed!";
+    public static final String CHEAT = "Cheater!";
+    public static final String NOMP  = "Not enough faith!";
     
-    public static String FISTS = " with fists dealing ";
-    public static String MAGIC = " with magic dealing ";
-    public static String DEALT = " which dealt ";
-    public static String DAMAGE= " damage!";
+    public static final String FISTS = " with fists dealing ";
+    public static final String MAGIC = " with magic dealing ";
+    public static final String DEALT = " which dealt ";
+    public static final String DAMAGE= " damage!";
     
-    public static String UP    = "up";
-    public static String DOWN  = "down";
-    public static String LEFT  = "left";
-    public static String RIGHT = "right";
-    public static String ENTER = "enter";
-    public static String SHIFT = "shift";
-    public static String ESCAPE= "escape";
+    public static final String UP    = "up";
+    public static final String DOWN  = "down";
+    public static final String LEFT  = "left";
+    public static final String RIGHT = "right";
+    public static final String ENTER = "enter";
+    public static final String SHIFT = "shift";
+    public static final String ESCAPE= "escape";
 
     /**
      * Constructor for objects of class BattleField.
