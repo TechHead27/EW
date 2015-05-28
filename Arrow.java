@@ -10,6 +10,8 @@ public class Arrow extends Actor
 {
     private final int[][] options;
     private int selection;
+        
+    private static final int DELAY = 12;
     
     public Arrow(int[][] menu)
     {
@@ -45,6 +47,4 @@ public class Arrow extends Actor
     {
         return selection;
     }
-    
-    private static final int DELAY = 12;
 }

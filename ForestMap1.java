@@ -28,7 +28,6 @@ public class ForestMap1 extends World
         gen = new java.util.Random();
         bgm = new GreenfootSound("BGM/Forest1.mp3");
         bgm.playLoop();
-        //setBackground("images/map/tombstone.png");
         setBackground(background);
     }
     
@@ -41,7 +40,6 @@ public class ForestMap1 extends World
         player.setMovable(true);
         player.exploreReady();
         addObject(player, 300, 200);
-        //Greenfoot.delay(15); Seems unnecessary? Not exactly sure what it was for
         gen = new java.util.Random();
         bgm = new GreenfootSound("BGM/Forest1.mp3");
         bgm.playLoop();
@@ -61,7 +59,6 @@ public class ForestMap1 extends World
             Greenfoot.delay(7);
             Greenfoot.setWorld(new ForestBattle(player, Greenfoot.getRandomNumber(4)));
             bgm.stop();
-            //Greenfoot.delay(5);
         }
         if (Greenfoot.isKeyDown("enter"))
         {

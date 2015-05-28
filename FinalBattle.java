@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class FinalBattle extends BattleField
 {
-    private final int[][] options = {{75, 304}, {75, 330}, {75, 356}, {75, 382}};
+    private static final int[][] options = {{75, 304}, {75, 330}, {75, 356}, {75, 382}};
     private Monster boss;
     private HealthBar healthBar;
     private FaithBar faithBar;
@@ -29,9 +29,6 @@ public class FinalBattle extends BattleField
         setBackground(background);
         selector = new Arrow(options);
         addObject(selector, 75, 304);
-        
-        //GreenfootImage g = new GreenfootImage("hello", 20, java.awt.Color.green, java.awt.Color.white);
-        //selector.setImage(g);
         
         showText("ATTACK", 135, 298);
         showText("Standard physical attack", 350, 298);
@@ -196,20 +193,15 @@ public class FinalBattle extends BattleField
             showText("THE EVIL POSSESED TOILET.",300,256);
             Greenfoot.delay(100);
             
-            //while(!Greenfoot.isKeyDown("enter")) {
-                showText("YOU HAVE FREED THE PEOPLE OF THEIR FEAR OF", 300, 236);
-                showText("POOPING AND CLOSED THE SWIRLING VORTEX WITHIN.", 300, 256);
-            //}
+            showText("YOU HAVE FREED THE PEOPLE OF THEIR FEAR OF", 300, 236);
+            showText("POOPING AND CLOSED THE SWIRLING VORTEX WITHIN.", 300, 256);
             Greenfoot.delay(500);
-            //while(!Greenfoot.isKeyDown("enter")) {
-                
-            //}
+            
             Greenfoot.delay(5);
             victory.stop();
             Greenfoot.setWorld(new Credits("images/credits/credits1.png"));
         }
         
-        //showText("", 300, 244);
         if (Greenfoot.isKeyDown("7"))
         {
             bgm.stop();
@@ -221,14 +213,10 @@ public class FinalBattle extends BattleField
             showText("THE EVIL POSSESED TOILET.",300,256);
             Greenfoot.delay(100);
             
-            //while(!Greenfoot.isKeyDown("enter")) {
-                showText("YOU HAVE FREED THE PEOPLE OF THEIR FEAR OF", 300, 236);
-                showText("POOPING AND CLOSED THE SWIRLING VORTEX WITHIN.", 300, 256);
-            //}
+            showText("YOU HAVE FREED THE PEOPLE OF THEIR FEAR OF", 300, 236);
+            showText("POOPING AND CLOSED THE SWIRLING VORTEX WITHIN.", 300, 256);
             Greenfoot.delay(500);
-            //while(!Greenfoot.isKeyDown("enter")) {
-                
-            //}
+
             Greenfoot.delay(5);
             victory.stop();
             Greenfoot.setWorld(new Credits("images/credits/credits1.png"));

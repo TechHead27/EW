@@ -10,7 +10,10 @@ public class Character extends Actor
 {
     private boolean moved, movable;
     private int x, y;
-    private String name = "Chive";
+    public static final int TILESIZE = 1;
+    public static final int MOVEDELAY = 10;
+    
+    GreenfootImage player = new GreenfootImage("images/priest/priest_victory1.png");
 
     /**
      * Variables for RPG-ness
@@ -25,13 +28,13 @@ public class Character extends Actor
      */
     private int health, faith;
     private int strength, defense, piety, will, speed;
-    private int maxHP, maxMP, curExp, nextLvl, lvl;
+    private int maxHP, maxMP;
     
     public Character(int startx, int starty)
     {
         moved = false;
         movable = true;
-        GreenfootImage player = new GreenfootImage("images/priest/priest_victory1.png");
+        
         player.scale(70, 70);
         setImage(player);
         x = startx;
@@ -46,22 +49,16 @@ public class Character extends Actor
         speed = 15;
         maxHP = 100;
         maxMP = 50;
-        
-        curExp = 0;
-        nextLvl = 100;
-        lvl = 1;
     }
     
     public void battleReady()
     {
-        GreenfootImage player = new GreenfootImage("images/priest/priest_victory1.png");
         player.scale(140, 140);
         setImage(player);
     }
     
     public void exploreReady()
     {
-        GreenfootImage player = new GreenfootImage("images/priest/priest_victory1.png");
         player.scale(70, 70);
         setImage(player);
     }
@@ -77,28 +74,32 @@ public class Character extends Actor
             if (Greenfoot.isKeyDown("up"))
             {
                 y -= TILESIZE;
-                if (y < 0) y = 0;
+                if (y < 0) 
+                    y = 0;
                 moved = true;
                 Greenfoot.delay(MOVEDELAY);
             }
             else if (Greenfoot.isKeyDown("down"))
             {
                 y += TILESIZE;
-                if (y >= getWorld().getHeight()) y = getWorld().getHeight() - 1;
+                if (y >= getWorld().getHeight()) 
+                    y = getWorld().getHeight() - 1;
                 moved = true;
                 Greenfoot.delay(MOVEDELAY);
             }
             else if (Greenfoot.isKeyDown("left"))
             {
                 x -= TILESIZE;
-                if (x < 0) x = 0;
+                if (x < 0) 
+                    x = 0;
                 moved = true;
                 Greenfoot.delay(MOVEDELAY);
             }
             else if (Greenfoot.isKeyDown("right"))
             {
                 x += TILESIZE;
-                if (x >= getWorld().getWidth()) x = getWorld().getWidth() - 1;
+                if (x >= getWorld().getWidth()) 
+                    x = getWorld().getWidth() - 1;
                 moved = true;
                 Greenfoot.delay(MOVEDELAY);
             }
@@ -118,7 +119,8 @@ public class Character extends Actor
         int monDef = m.getDefense();
         
         damage = (strength * 2) / (monDef * 3);
-        if (damage == 0) damage = 1;
+        if (damage == 0) 
+            damage = 1;
         return damage;
     }
     
@@ -133,7 +135,8 @@ public class Character extends Actor
         faith -= cost;
         
         damage = (piety * 2) / (monMDef * 3);
-        if (damage == 0) damage = 1;
+        if (damage == 0) 
+            damage = 1;
         return damage;
     }
     
@@ -258,7 +261,4 @@ public class Character extends Actor
     {
         speed = spd;
     }
-    
-    public static final int TILESIZE = 1;
-    public static final int MOVEDELAY = 10;
 }

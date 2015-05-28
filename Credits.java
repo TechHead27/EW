@@ -18,7 +18,7 @@ public class Credits extends World
      */
     public Credits(String path)
     {
-        super(4, 4, 100);
+        super(526, 590, 1);
         // construct the initial image yo
         Matcher matcher = Pattern.compile("\\d+").matcher(path);
         matcher.find();
@@ -32,10 +32,12 @@ public class Credits extends World
      */
     public void act() {
         String nextPage = "images/credits/credits" + (creditPage + 1) + ".png";
-
-        if(creditPage++ < 2) {
+        GreenfootImage bg;
+        if(creditPage++ < 1) {
             Greenfoot.delay(200);
-            setBackground(nextPage);
+            bg = new GreenfootImage(nextPage);
+            bg.scale(526,590);
+            setBackground(bg);
         }
         else {
             Greenfoot.stop();

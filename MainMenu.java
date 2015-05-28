@@ -8,13 +8,13 @@ import greenfoot.*;
  */
 public class MainMenu extends World
 {
-    private final int[][] options = {{170, 96}, {170, 200}, {170, 304}};
+    private static final int[][] options = {{170, 96}, {170, 200}, {170, 304}};
     private Arrow selector;
     private GreenfootSound bgm;
     
     private MenuItem play = new MenuItem("images/buttons/button_play.png");
     private MenuItem quit = new MenuItem("images/buttons/button_quit.png");;
-    private MenuItem credits = new MenuItem("images/buttons/button_play.png");;
+    private MenuItem credits = new MenuItem("images/buttons/button_credits.png");;
     /**
      * Constructor for objects of class MainMenu.
      * 

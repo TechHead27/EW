@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class MansionBattle extends BattleField
 {   
-    private final int[][] options = {{75, 304}, {75, 330}, {75, 356}, {75, 382}};
+    private static final int[][] options = {{75, 304}, {75, 330}, {75, 356}, {75, 382}};
     private Monster enemy1, enemy2, enemy3;
     private HealthBar healthBar;
     private FaithBar faithBar;
@@ -30,7 +30,6 @@ public class MansionBattle extends BattleField
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super();
-        //showText("Monster appeared!", 300, 244);
         background = new GreenfootImage("images/menus/battlemenu.png");
         background.scale(600, 400);
         setBackground(background);

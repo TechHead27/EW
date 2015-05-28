@@ -33,7 +33,8 @@ public class FinalBoss extends Monster
         int playDef = player.getDefense();
         
         damage = ((strength * 5) / playDef) + 6;
-        if (damage == 0) damage = 1;
+        if (damage == 0) 
+            damage = 1;
         return damage;
     }
     
