@@ -51,7 +51,7 @@ public class ForestMap1 extends World
         if (player.hasMoved() && player.getY() == 0)
         {
             Greenfoot.delay(7);
-            Greenfoot.setWorld(new ForestMap2());
+            Greenfoot.setWorld(new ForestMap2(new Character(player.getX(), 7)));
             bgm.stop();
         }
         else if (player.hasMoved() && gen.nextFloat() <= 0.13)

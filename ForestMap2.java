@@ -11,7 +11,7 @@ public class ForestMap2 extends World
     private Character player;
     private java.util.Random gen;
     private GreenfootSound bgm;
-    private GreenfootImage background = new GreenfootImage("images/map/scene2(2).png");
+    private GreenfootImage background = new GreenfootImage("images/map/scene2.png");
     /**
      * Constructor for objects of class ForestMap2.
      * 
@@ -47,7 +47,13 @@ public class ForestMap2 extends World
     
     public void act()
     {
-        if (player.hasMoved() && gen.nextFloat() <= 0.20)
+        if (player.hasMoved() && player.getY() == 7)
+        {
+            Greenfoot.delay(7);
+            Greenfoot.setWorld(new ForestMap1(new Character(player.getX(), 0)));
+            bgm.stop();
+        }
+        else if (player.hasMoved() && gen.nextFloat() <= 0.20)
         {
             Greenfoot.delay(7);
             Greenfoot.setWorld(new MansionBattle(player, Greenfoot.getRandomNumber(4)));
